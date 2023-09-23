@@ -1,9 +1,12 @@
 'use strict';
-let firstOperand = Number(prompt('Write the first operand',));
-let secondOperand = Number(prompt('Write the second operand',));
-let c = firstOperand+secondOperand;
-let result = 'Результат:'+firstOperand+'+'+secondOperand+'='+c;
+let firstOperand = prompt('Write the first operand',);
+let secondOperand = prompt('Write the second operand',);
+
+let add = 'Результат:'+firstOperand+'+'+secondOperand+'='+(Number(firstOperand)+Number(secondOperand));
+let sub = 'Результат:'+firstOperand+'-'+secondOperand+'='+(Number(firstOperand)-Number(secondOperand));
+let mult = 'Результат:'+firstOperand+'*'+secondOperand+'='+(Number(firstOperand)*Number(secondOperand));
+let div = 'Результат:'+firstOperand+'/'+secondOperand+'='+(Number(firstOperand)/Number(secondOperand));
 
 console.log(firstOperand);
 console.log(secondOperand);
-console.log(result);
+console.log(add,sub,mult,div);
