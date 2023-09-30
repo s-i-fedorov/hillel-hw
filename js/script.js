@@ -27,4 +27,5 @@ let salaries = {
     Ann: 160,
     Pete: 130
 }
-let sum =
+let sum = salaries.John + salaries.Ann + salaries.Pete;
+console.log(sum)
