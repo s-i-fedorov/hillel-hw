@@ -6,26 +6,50 @@
 // інакше виведіть їх різницю (результат віднімання).
 // 12. Якщо змінна a більше 2-х і менше 11-ти, або змінна b більша або дорівнює 6-ти і менше 14-ти,
 // то виведіть 'Вірно', інакше виведіть 'Невірно'.
-//     Змінна num може приймати 4 значення: 1, 2, 3 або 4. Якщо вона має значення 1, то в змінну result
+// 13. Змінна num може приймати 4 значення: 1, 2, 3 або 4. Якщо вона має значення 1, то в змінну result
 //     запишемо зима, якщо має значення 2 - весна і так далі. Розв'яжіть завдання через switch-case.
-let a = 1;
+let a = 3;
+let b = 7;
 // 1
-// let b = a === 0 ? console.log('True') : console.log('False');
+let c1 = a === 0 ? console.log('True') : console.log('False');
 // 2
-// let b = a > 0 ? console.log('True') : console.log('False');
+let c2 = a > 0 ? console.log('True') : console.log('False');
 // 3
-// let b = a < 0 ? console.log('True') : console.log('False');
+let c3 = a < 0 ? console.log('True') : console.log('False');
 // 4
-let b = a >= 0 ? console.log('True') : console.log('False');
+let c4 = a >= 0 ? console.log('True') : console.log('False');
 // 5
-let b = a <= 0 ? console.log('True') : console.log('False');
+let c5 = a <= 0 ? console.log('True') : console.log('False');
 // 6
-let b = a !== 0 ? console.log('True') : console.log('False');
+let c6 = a !== 0 ? console.log('True') : console.log('False');
 // 7
-let b = a === 'test' ? console.log('True') : console.log('False');
+let c7 = a === 'test' ? console.log('True') : console.log('False');
 // 8
-let b = a === 1 ? console.log('True') : console.log('False');
+let c8 = a === 1 ? console.log('True') : console.log('False');
 // 9
-let b = 5 > a > 0 ? console.log('True') : console.log('False');
+let c9 = 5 > a > 0 ? console.log('True') : console.log('False');
 // 10
-let b = a === 0 || a === 2 ? console.log(a+7) : console.log(a/10);
+let c10 = a === 0 || a === 2 ? console.log(a+7) : console.log(a/10);
+// 11
+let c11 = a <= 1 && b >=3 ? console.log(a+b) : console.log(a-b);
+// 12
+let c12 = (11 > a > 2) && (14 > b >= 6) ? console.log('true') : console.log('false');
+// 13
+let num = 4;
+let result = num;
+switch (num){
+    case 1:
+        console.log('winter');
+        break;
+    case 2:
+        console.log('spring');
+        break;
+    case 3:
+        console.log('summer');
+        break;
+    case 4:
+        console.log('autumn');
+        break;
+    default:
+        console.log('Error');
+}
