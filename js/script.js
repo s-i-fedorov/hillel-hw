@@ -23,18 +23,47 @@
 // “Шкода, що Ви не захотіли ввести свій(ю) …” і вказуємо, що він не захотів вводити – дату народження,
 //     місто чи вид спорту.
 let today = new Date();
-let age = today.getFullYear()-prompt('Введіть свій рік народження');
+let age = prompt('Введіть свій рік народження');
+let countAge = today.getFullYear()-age;
 let city = prompt('Введіть назву міста, в якому ви живете');
 let sport= prompt('Введіть ваш улюблений вид спорту');
 
-if (city==='Київ'){
-let cityMessage = 'Ти живеш у столиці України'
-} else if (city==='Вашингтон'){
-    let cityMessage='Ти живеш у столиці США'
-} else if (city==='Лондон'){
-    let cityMessage='Ти живеш у столиці Англії'
+let ageMessage = null;
+let cityMessage = null;
+let sportMessage = null;
+
+if (typeof age==='number'){
+    ageMessage = `Тобі ${countAge} років`
+} else if (typeof age==='string'){
+    ageMessage = `Ви ввели некоректне число`
+} else if (age===null){
+    cityMessage='Шкода що ти не захотів вводити дату свого народження'
 } else {
-    let cityMessage=`Ти живеш у місті ${city}`
+    ageMessage = `Тобі ${countAge} років`
 }
 
-alert(age, cityMessate);
+if (city==='Київ'){
+ cityMessage = 'Ти живеш у столиці України'
+} else if (city==='Вашингтон'){
+     cityMessage='Ти живеш у столиці США'
+} else if (city==='Лондон'){
+     cityMessage='Ти живеш у столиці Англії'
+} else if (city===null){
+    cityMessage='Шкода що ти не захотів вводити своє місто'
+} else {
+     cityMessage=`Ти живеш у місті ${city}`
+}
+
+if (sport='бокс'){
+    sportMessage = 'Круто! Хочеш стати Муххамедом Алі?'
+} else if (sport='футбол') {
+    sportMessage = 'Круто! Хочеш стати Мессі?'
+} else if (sport='баскетбол') {
+    sportMessage = 'Круто! Хочеш стати Майклом Джорданом?'
+} else if (sport===null){
+    sportMessage='Шкода що ти не захотів вводити свій улюблений вид спорту'
+} else {
+    sportMessage = `${sport} це круто! Бажаю тобі успіхів!`
+}
+    console.log(cityMessage);
+alert(`Тобі ${age} років, ${cityMessage}`);
