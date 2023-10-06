@@ -33,7 +33,11 @@ let c10 = a === 0 || a === 2 ? console.log(a+7) : console.log(a/10);
 // 11
 let c11 = a <= 1 && b >=3 ? console.log(a+b) : console.log(a-b);
 // 12
-let c12 = (11 > a > 2) && (14 > b >= 6) ? console.log('true') : console.log('false');
+// let c12 = (11 > a > 2) && (14 > b >= 6) ? console.log('true') : console.log('false');
+// let c12 = (11 > a > 2) ? console.log('true') : (14 > b >= 6) ? console.log('true') : console.log('false');
+if (11 > a > 2){
+    console.log('true')
+}
 // 13
 let num = 4;
 let result = num;
