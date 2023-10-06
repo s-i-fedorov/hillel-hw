@@ -15,7 +15,7 @@
 //     }
 
 let numOrStr = prompt('input number or string');
-    console.log(numOrStr)
+    // console.log(numOrStr)
 switch (numOrStr) {
     case null:
         console.log('ви скасували');
@@ -27,7 +27,7 @@ switch (numOrStr.trim())
         console.log('Empty String');
         break;
 }
-switch (isNaN( +numOrStr ))
+switch (true)
 {
     case isNaN( +numOrStr ):
        console.log(' number is Ba_NaN');
