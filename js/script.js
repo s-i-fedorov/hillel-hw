@@ -32,12 +32,10 @@ let ageMessage = null;
 let cityMessage = null;
 let sportMessage = null;
 
-if (typeof age==='number'){
-    ageMessage = `Тобі ${countAge} років`
-} else if (typeof age==='string'){
+if (typeof countAge===NaN){
     ageMessage = `Ви ввели некоректне число`
 } else if (age===null){
-    cityMessage='Шкода що ти не захотів вводити дату свого народження'
+    ageMessage='Шкода що ти не захотів вводити дату свого народження'
 } else {
     ageMessage = `Тобі ${countAge} років`
 }
@@ -54,11 +52,11 @@ if (city==='Київ'){
      cityMessage=`Ти живеш у місті ${city}`
 }
 
-if (sport='бокс'){
+if (sport==='бокс'){
     sportMessage = 'Круто! Хочеш стати Муххамедом Алі?'
-} else if (sport='футбол') {
+} else if (sport==='футбол') {
     sportMessage = 'Круто! Хочеш стати Мессі?'
-} else if (sport='баскетбол') {
+} else if (sport==='баскетбол') {
     sportMessage = 'Круто! Хочеш стати Майклом Джорданом?'
 } else if (sport===null){
     sportMessage='Шкода що ти не захотів вводити свій улюблений вид спорту'
@@ -66,4 +64,4 @@ if (sport='бокс'){
     sportMessage = `${sport} це круто! Бажаю тобі успіхів!`
 }
     console.log(cityMessage);
-alert(`Тобі ${age} років, ${cityMessage}`);
+alert(`${ageMessage} ${cityMessage} ${sportMessage}`);
