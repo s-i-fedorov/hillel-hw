@@ -20,3 +20,19 @@
 //     a=`${a},${b}`
 // }
 // console.log(a);
+//2
+for (let a=10;a<=20;a++){
+    console.log(a**2)
+}
+//3
+let a3=7;
+for (let b3=1;b3<=10;b3++){
+    console.log(`${a3}*${b3}=`+a3*b3)
+}
+//4
+let a4=0
+for (let b4=0;b4<=15;b4++){
+    a4+=b4;
+
+}
+console.log(a4);
