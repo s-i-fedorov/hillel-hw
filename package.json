@@ -1,0 +1,28 @@
+{
+  "name": "hillel-hw-new",
+  "version": "1.0.0",
+  "description": "Опис ДЗ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s-i-fedorov/hillel-hw.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/s-i-fedorov/hillel-hw/issues"
+  },
+  "homepage": "https://github.com/s-i-fedorov/hillel-hw#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "^8.51.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "prettier": "3.0.3"
+  }
+}
