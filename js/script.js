@@ -18,5 +18,18 @@
 
 function padString(row,rowLength,superSymbol,leftRight = true){
     let result = '';
+    if (row === undefined){
+        return console.log('ви не ввели рядок')
+    } else if (rowLength === undefined) {
+        return console.log('ви не ввели довжину рядка')
+    } else if (superSymbol === undefined) {
+        return console.log('ви не ввели спецсимвол')
+    }
+    if (leftRight === true){
+        console.log(row.padStart(rowLength,superSymbol))
+    } else {
+        console.log(row.padEnd(rowLength,superSymbol))
+    }
+    }
 
-}
+    padString(helloWorld, )
