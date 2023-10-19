@@ -12,7 +12,7 @@ const mainFunction = (callback)=>{
 
 mainFunction(exponentiation);
 
-// Callback функція multiplay
+// Callback функція multiply
 // 2. У тілі функції нам потрібно помножити (*) перший аргумент на другий аргумент і записати результат
 // цієї операції у змінну
 
@@ -29,7 +29,7 @@ const mainFunction2 = (callback)=>{
 mainFunction2(multiply);
 
 // Callback функція division
-// 2. У тілі функції нам потрібно поділити ( / ) перший аргумент на другий аргумент та записати результат
+// 2. У тілі функції нам потрібно поділити (/) перший аргумент на другий аргумент та записати результат
 // цієї операції у змінну
 
 const division = (numberOne, numberTwo)=>{
@@ -44,9 +44,9 @@ const mainFunction3 = (callback)=>{
 
 mainFunction3(division);
 
-Callback функція modulo
-2. У тілі функції нам потрібно обчислити залишок від поділу (%) першого аргументу на другий аргумент
-та записати результат цієї операції у змінну
+// Callback функція modulo
+// 2. У тілі функції нам потрібно обчислити залишок від поділу (%) першого аргументу на другий аргумент
+// та записати результат цієї операції у змінну
 
 const modulo = (numberOne, numberTwo)=>{
     let result = numberOne % numberTwo;
