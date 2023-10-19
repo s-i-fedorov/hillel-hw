@@ -19,11 +19,14 @@
 // Після написання цих функцій необхідно викликати "Основну функцію" і їй як аргумент передати callback
 // функцію
 
-let mainFunction = (callback) => {
-    let numberOne = prompt('введіть перше число');
-    let numberTwo = prompt('введіть друге число');
-    let callback = (+numberOne , +numberTwo) => {
-                let result =
-    }
+const exponentiation = (numberOne, numberTwo)=>{
+    let result = numberOne ** numberTwo;
+    return alert(`${numberOne} в степені ${numberTwo} дорівнює ${result}`);
+};
+const mainFunction = (callback)=>{
+    let numberOne = +prompt('введіть перше число');
+    let numberTwo = +prompt('введіть друге число');
+    callback(numberOne,numberTwo);
+};
 
-}
+mainFunction(exponentiation);
