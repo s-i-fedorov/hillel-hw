@@ -28,3 +28,12 @@ for(let i = 0; i<arrPositive.length; i++){
 console.log(sumElement);
 
 // 2
+let arrTemp = arrOne.slice();
+let arrTwo = arrTemp.sort((a,b)=>a-b);
+console.log(arrTwo[0]);
+console.log(arrOne.indexOf(arrTwo[0])+1);
+
+// 3
+console.log(arrTwo[arrTwo.length-1]);
+console.log(arrOne.indexOf(arrTwo[arrTwo.length-1])+1);
+
