@@ -35,13 +35,44 @@ arrOne.forEach(item=> {
 console.log(`Кількість негативних елементів масиву: ${arrNegative.length}`);
 
 //     5. Знайти кількість непарних позитивних елементів.
-let countOddPositive = null;
+let countNoOddPos = null;
 arrPositive.forEach(item => {
-    if(item%2!==0) countOddPositive++;
+    if(item%2!==0) countNoOddPos++;
 })
-console.log(`Кількість непарних позитивних елементів: ${countOddPositive}`);
+console.log(`Кількість непарних позитивних елементів: ${countNoOddPos}`);
+
 //     6. Знайти кількість парних позитивних елементів.
+let countOddPos = null;
+arrPositive.forEach(item => {
+    if(item%2===0) countOddPos++;
+})
+console.log(`Кількість парних позитивних елементів: ${countOddPos}`);
+
 //     7. Знайти суму парних позитивних елементів.
+let sumOddPos = null;
+arrPositive.forEach(item => {
+    if(item%2===0) sumOddPos+=item;
+})
+console.log(`Сума парних позитивних елементів: ${sumOddPos}`);
+
 //     8. Знайти суму непарних позитивних елементів.
+let sumNoOddPos = null;
+arrPositive.forEach(item => {
+    if(item%2!==0) sumNoOddPos+=item;
+})
+console.log(`Сума непарних позитивних елементів: ${sumNoOddPos}`);
+
 //     9. Знайти добуток позитивних елементів.
+let multPos = 1n;
+arrPositive.forEach(item=>{
+    multPos*=BigInt(item)
+})
+console.log(`Добуток позитивних елементів масиву: ${multPos}`);
+
 //     10. Знайти найбільший серед елементів масиву, остальні обнулити.
+const arrWithZero  = arrOne.map(item=> {
+    if (item !== arrSort[arrSort.length-1])
+        return  item=0
+else return item = arrSort[arrSort.length-1];
+})
+console.log(arrWithZero);
