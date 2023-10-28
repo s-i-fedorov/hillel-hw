@@ -1,10 +1,10 @@
 'use strict';
 
 let foo = prompt('Введіть елементи масиву через кому');
-let arrOne = foo.split(',')
+const arrOne = foo.split(',')
 alert(`Ви ввели масив:\n [${arrOne}]`);
 
-let arrTwo = arrOne.sort((a,b)=>a-b);
+const arrTwo = arrOne.sort((a,b)=>a-b);
 alert(`Масив відсортовано за зростанням:\n [${arrTwo}]`);
 
 arrTwo.splice(1,3)
