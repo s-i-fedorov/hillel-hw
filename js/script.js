@@ -72,7 +72,7 @@ console.log(`Добуток позитивних елементів масиву
 //     10. Знайти найбільший серед елементів масиву, остальні обнулити.
 const arrWithZero  = arrOne.map(item=> {
     if (item !== arrSort[arrSort.length-1])
-        return  item=0
+        return  item=0;
 else return item = arrSort[arrSort.length-1];
 })
 console.log(arrWithZero);
