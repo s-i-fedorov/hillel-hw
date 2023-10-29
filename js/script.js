@@ -49,3 +49,4 @@ const every = () => {}
 const some = (arr, callback) => {
 
 }
+some(arrOne,element=>element>10)
