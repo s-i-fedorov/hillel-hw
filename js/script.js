@@ -59,4 +59,10 @@ let users = [
     }
 ]
 
-console.log(users);
+// console.log(users);
+let a= users.filter(item=>(item.balance).replace('$','')>2000);
+console.log(a);
+
+let foo = '$25,790.56';
+console.log(foo);
+console.log(foo.replace('$',''));
