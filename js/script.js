@@ -8,8 +8,6 @@ const arrString = ['apple', 'banana', 'orange', 'chery', 'peach'];
 
 const indexOf = (arr, item, from = 0) => {
     if (from>=arr.length) return console.log(-1);
-    // if (from<0) from=arr.length+from;
-    // return  console.log(from);
     for(from;from <= arr.length;from++) {
         if (from<0) from=arr.length+from;
         if(arr[from]===item) return console.log(from);
@@ -33,7 +31,6 @@ lastIndexOf(arrOne,5,-2)
 //function find
 const find = (arr, callback) => {
     for(let i = 0; i<=arr.length;i++){
-        // let element = callback(arr[i]);
         let element = arr[i];
         if(callback(element)) return console.log(arr[i])
     }
@@ -72,7 +69,7 @@ const every = (arr, callback) => {
     return console.log(false);
 }
 console.log('-----------every:');
-every(arrString,item=>item.length<2);
+every(arrOne,item=>item>=1);
 
 //function some
 const some = (arr, callback) => {
