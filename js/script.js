@@ -1,8 +1,8 @@
 'use strict';
 // Вивести масив телефонних номерів користувачів, у яких баланс понад 2000 доларів.
 //     І знайти суму всіх балансів користувачів
-const newArr = [];
-let users = [
+let newArr = [];
+const users = [
     {
         "index": 0,
         "isActive": true,
@@ -60,9 +60,11 @@ let users = [
 ]
 
 // console.log(users);
-let a= users.filter(item=>(item.balance).replace('$','')>2000);
-console.log(a);
+newArr = users.map(item=>{
+    // item;
+    (item.balance).replace('$','')})
+console.log(newArr);
 
-let foo = '$25,790.56';
-console.log(foo);
-console.log(foo.replace('$',''));
+// let foo = '$25,790.56';
+// console.log(foo);
+// console.log(foo.replace('$',''));
