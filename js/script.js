@@ -1,7 +1,7 @@
 'use strict';
 // Вивести масив телефонних номерів користувачів, у яких баланс понад 2000 доларів.
 //     І знайти суму всіх балансів користувачів
-let newArr = [];
+
 const users = [
     {
         "index": 0,
@@ -59,14 +59,32 @@ const users = [
     }
 ]
 
-console.log(users[1].balance);
+const delSymb = (str, symb, symb2)=>{
+    str=str.replace(symb,'');
+    str=str.replace(symb2,'');
+    return str;
+}
 
-newArr = users.map(  (item) => item.balance )
-console.log(newArr);
+const newArr = users.map(item=>{
+return {
+    name:item.name,
+    phone:item.phone,
+    balance:(delSymb(item.balance,'$',','))
+}
+})
+
+console.log(newArr.map(item=>{if(item.balance>2000) return item.phone}));
+console.log(newArr[3].balance)
+console.log(newArr.reduce((acc,item)=>acc+item.balance ),0);
 
 const arr = [1,2,3,4,5];
-const arr2 = ['apple', 'banana', 'orange', 'peach']
-console.log(arr.map(item=>item+3))
-// let foo = '$25,790.56';
-// console.log(foo);
-// console.log(foo.replace('$',''));
+let a = arr.reduce((acc,item)=>acc+item,10);
+console.log(a);
+
+// if((delSymb(item.balance,'$',',')>2000))
+
+// return {
+//     name:item.name,
+//     phone:item.phone,
+//     balance:(delSymb(item.balance,'$',','))
+// }
