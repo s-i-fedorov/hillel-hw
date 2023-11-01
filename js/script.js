@@ -62,7 +62,7 @@ const users = [
 const delSymb = (str, symb, symb2)=>{
     str=str.replace(symb,'');
     str=str.replace(symb2,'');
-    return str;
+    return Number(str);
 }
 
 const newArr = users.map(item=>{
@@ -74,17 +74,5 @@ return {
 })
 
 console.log(newArr.map(item=>{if(item.balance>2000) return item.phone}));
-console.log(newArr[3].balance)
-console.log(newArr.reduce((acc,item)=>acc+item.balance ),0);
 
-const arr = [1,2,3,4,5];
-let a = arr.reduce((acc,item)=>acc+item,10);
-console.log(a);
-
-// if((delSymb(item.balance,'$',',')>2000))
-
-// return {
-//     name:item.name,
-//     phone:item.phone,
-//     balance:(delSymb(item.balance,'$',','))
-// }
+console.log(newArr.reduce((acc,item)=>acc+item.balance ,0));
