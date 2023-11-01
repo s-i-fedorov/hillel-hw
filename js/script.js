@@ -59,12 +59,14 @@ const users = [
     }
 ]
 
-// console.log(users);
-newArr = users.map(item=>{
-    // item;
-    (item.balance).replace('$','')})
+console.log(users[1].balance);
+
+newArr = users.map(  (item) => item.balance )
 console.log(newArr);
 
+const arr = [1,2,3,4,5];
+const arr2 = ['apple', 'banana', 'orange', 'peach']
+console.log(arr.map(item=>item+3))
 // let foo = '$25,790.56';
 // console.log(foo);
 // console.log(foo.replace('$',''));
