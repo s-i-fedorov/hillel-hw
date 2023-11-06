@@ -20,21 +20,29 @@
 
 function counter (number=0){
     let counter = number;
-    let get = 0;
+    let getIncr = 0;
+    let getDecr = 0;
+    let getStat = 0;
     function increase(){
         counter++;
-        get++;
+        getIncr++;
     }
     function decrease(){
         counter--;
-        get++;
+        getDecr++;
     }
     function value(){
-        return console.log(counter)
+        return console.log(`Current value=${counter}`)
     }
     function getStatistic(){
-        get++;
-        console.log(`Кількість визовів методів: ${get}`)
+        getStat++;
+        let result = {
+            increase: getIncr,
+            decrease: getDecr,
+            get: getStat
+        };
+        return console.log(result);
+        // console.log(`Кількість визовів методів: ${get}`)
     }
     function reset(){
         return counter=number
@@ -48,11 +56,14 @@ function counter (number=0){
     }
 }
 const var1 = counter();
-var1.value()
-var1.increase()
+    console.log('==========var1==========')
     var1.increase()
+    var1.increase()
+    var1.decrease()
     var1.value()
-    console.log('var2==========')
+    var1.get()
+    var1.get()
+    console.log('==========var2==========')
     const var2 = counter();
     var2.increase()
     var2.increase()
@@ -62,29 +73,7 @@ var1.increase()
     var2.value()
     var2.get()
 
-    // console.log(counter())
 
-
-//
-// function counter(a=0){
-//     // let a = 0;
-//     function increment(){
-//         a++;
-//         console.log(a)
-//     }
-//     function decrement(){
-//         a--;
-//         console.log(a)
-//     }
-//     return {
-//         incr: increment,
-//     decr: decrement
-//     }
-// }
-// const a=counter();
-//    a.incr()
-//     a.incr()
-//     a.incr()
 
 })()
 
