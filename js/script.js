@@ -11,18 +11,20 @@
     ]
 
 
-    function flat(arr, res =[]) {
+    function outerFlat() {
+        return function flat(arr,res = []) {
             for(let i = 0; i < arr.length; i++) {
                 if(Array.isArray(arr[i])) {
-                    flat(arr[i], res)
+                    flat(arr[i],res)
                 } else {
                     res.push(arr[i])
                 }
             }
             return res;
         }
+    }
 
-
+const flat = outerFlat()
     console.log(flat(arrow));
     console.log(flat(arrow));
 
