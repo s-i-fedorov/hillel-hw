@@ -1,20 +1,17 @@
 'use strict';
 (function (){
 
-    const arr = [
+    const arrow = [
         1, 2, 3, 4, {},
         [1, 2, 3],
         [1, 2, 3],
         [3, 4,
-            [5, 6, 7]
+            [5, 6,['a','s','d','f'], 7]
         ]
     ]
 
 
-
-    function outerFlat() {
-        let res = []
-        return function flat(arr) {
+    function flat(arr, res =[]) {
             for(let i = 0; i < arr.length; i++) {
                 if(Array.isArray(arr[i])) {
                     flat(arr[i], res)
@@ -24,10 +21,9 @@
             }
             return res;
         }
-    }
 
-    const flat = outerFlat()
-    console.log(flat(arr));
-    console.log(flat(arr));
+
+    console.log(flat(arrow));
+    console.log(flat(arrow));
 
 })()
