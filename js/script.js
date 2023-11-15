@@ -2,7 +2,7 @@
 // Написати свою реалізацію функції bind
 // При реалізації функції bind заборонено використовувати методи call та apply
 function example(){
-    console.log(this.name)
+    console.log(this.name+' '+this.age)
 }
 
 const a = {
@@ -15,10 +15,8 @@ const b = {
 }
 const c = {
     name: 'Miha',
-    age: 8
+    age: 7.99
 }
-const res = example.bind(a)
-// res()
 
 function myBind(addFunc, addObj){
     addObj.f=addFunc;
@@ -27,6 +25,6 @@ function myBind(addFunc, addObj){
     return result;
 }
 
-myBind(example, c)
+myBind(example,c)
 
-console.log(c)
+// console.log(c)
