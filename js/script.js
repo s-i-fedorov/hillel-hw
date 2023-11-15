@@ -17,14 +17,33 @@
 //      бо до цього вже були перебрані всі 3 можливі варіанти вставки
 (function (){
     function insertWordInto(row){
-        let a=row;
+        // let a=row;
+        let b=-1;
         return (word)=>{
+            let rowToArr = row.split(' ')
+            b++
             if (typeof word==="undefined") console.log('Error. Enter word')
-else            console.log(word+' '+a)}
+            else if (b<=rowToArr.length){
+                rowToArr.splice(b,0,word);
+            return console.log(rowToArr.join(' '));
+            }
+            else console.log('All options are exhausted')
+        }
     }
 
-const insertW = insertWordInto('hello my dear friend')
+const insertW = insertWordInto('hello world')
     // insertW('bla-bla')
+    insertW('Odessa')
+    insertW('damn')
+    insertW('damn')
+    insertW('damn')
+    insertW('damn')
+    insertW('damn')
+    insertW('damn')
     insertW()
+
+
+
+
 
 })()
