@@ -1,8 +1,13 @@
 'use strict';
 // Написати свою реалізацію функції bind
 // При реалізації функції bind заборонено використовувати методи call та apply
-function example(){
+function showInfo(){
     console.log(this.name+' '+this.age)
+}
+function multToNum(a,b){
+    let x = a;
+    let y = b;
+    return x*y;
 }
 
 const a = {
@@ -13,18 +18,25 @@ const b = {
     name: 'Vika',
     age: 29
 }
-const c = {
-    name: 'Miha',
-    age: 7.99
-}
+const c = [1,2,3,4,5]
 
 function myBind(addFunc, addObj){
-    addObj.f=addFunc;
-    let result = addObj.f();
-    delete addObj.f;
-    return result;
-}
+    if (addObj===null) {
+        // console.log(args)
+        return addFunc()
+    } else {
+        addObj.f = addFunc;
+        let result = addObj.f(args);
+        delete addObj.f;
+        return result;
+    }
+    }
 
-myBind(example,c)
+// myBind(showInfo,a)
+const double = multToNum(3)
+// const double = myBind(multToNum,null,3)
+console.log(double(2))
 
-// console.log(c)
+// let exemp
+// console.log(typeof exemp)
+
