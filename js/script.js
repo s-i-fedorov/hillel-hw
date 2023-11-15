@@ -13,7 +13,20 @@ const b = {
     name: 'Vika',
     age: 29
 }
+const c = {
+    name: 'Miha',
+    age: 8
+}
 const res = example.bind(a)
-res()
+// res()
 
-// console.log( example.bind(a))
+function myBind(addFunc, addObj){
+    addObj.f=addFunc;
+    let result = addObj.f();
+    delete addObj.f;
+    return result;
+}
+
+myBind(example, c)
+
+console.log(c)
