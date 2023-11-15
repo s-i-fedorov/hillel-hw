@@ -15,9 +15,18 @@
 // // optional
 //      const fourthResult = insert('Odesa') // -> 'Odesa hello world': лише на цьому кроці вставка слова повторилась,
 //      бо до цього вже були перебрані всі 3 можливі варіанти вставки
-(){
-    function insertWordInto(){
-        
+(function (){
+    function insertWordInto(row){
+        let a=row;
+        return (word)=>{
+            if (typeof word==="undefined") console.log('Error. Enter word')
+else            console.log(word+' '+a)}
     }
+    function insert(word){
 
-}()
+    }
+const insertW = insertWordInto('hello my dear friend')
+    // insertW('bla-bla')
+    insertW()
+
+})()
