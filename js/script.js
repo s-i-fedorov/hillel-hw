@@ -22,9 +22,7 @@
             if (typeof word==="undefined") console.log('Error. Enter word')
 else            console.log(word+' '+a)}
     }
-    function insert(word){
 
-    }
 const insertW = insertWordInto('hello my dear friend')
     // insertW('bla-bla')
     insertW()
