@@ -1,19 +1,24 @@
 'use strict';
+// У нас есть дерево, структурированное как вложенные списки ul/li.
+//     Напишите код, который выведет каждый элемент списка в консоль :
+// Вытянуть все атрибуты которые есть в теге ul, перебрать их (for..of) и записать значение каждого атрибута
+// в массив — вывести этот массив в консоль
+//      Так-же записать в отдельный массив каждое имя атрибута — вывести массив в консоль
+// С помощью JS изменить текст в последнем теге li на — «Привет меня зовут » + Ваше имя
+//      Добавить первому элементу li атрибут ‘data-my-name‘ со значением в котором будет лежать Ваше имя
+// Удалить у тега ul атрибут ‘data-dog-tail‘
 (function (){
 
-    let bodyEl = document.body
-    let li = bodyEl.childNodes[1].children
-    let arr = []
-    console.log('----------Task 1')
-    for (let liElement of li) {
-        console.log(liElement)
-    }
-    console.log('----------Task 2')
-    console.log('Кількість елементів у списку - ' + li.length)
-    console.log('----------Task 3')
-    for (let liElement of li) {
-        arr.push(liElement.outerText)
-    }
-    console.log(arr)
+    const li = document.querySelectorAll('li');
+const ul= document.querySelector('ul')
+
+    console.log('----------task 1-----------')
+    li.forEach(item=> console.log(item))
+
+    console.log(ul.attributes)
+    console.log(ul.getAttribute('class'))
+
+
+
 
 })()
