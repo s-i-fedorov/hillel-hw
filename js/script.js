@@ -21,22 +21,36 @@
 
 (function (){
 
-let ul = document.createElement('ul')
-    let li = document.createElement('li')
-    li.innerHTML = 'text'
-    const arr = [1,2,3,4,5,6]
+// let ul = document.createElement('ul')
+//     let li = document.createElement('li')
+//     li.innerHTML = 'text'
+    const a = 5
+    const arr = [1,2,3,4,
+        [1,2,3]
+        ,5,6]
 
     function generateList(array){
-    if (!Array.isArray(array)) return console.log('Error')
+    if (!Array.isArray(array)) return console.log('Error, argument isn`t array')
+        let ul = document.createElement('ul')
+        if (document.querySelector('ul:last-child'))
+        document.querySelector('ul:last-child').append(ul)
+         else   document.body.append(ul);
 
+        for (let arrayElement of array) {
+            if (Array.isArray(arrayElement)) generateList(arrayElement)
+            let li = document.createElement('li')
+            li.innerHTML = arrayElement
+            document.querySelector('ul:last-child').append(li)
+        }
     }
+    generateList(arr)
 
-    console.log(!Array.isArray(arr))
+    // console.log(!Array.isArray(arr))
 
 
     // document.body.append(ul)
     // document.querySelector('ul').append(li)
-    // console.log(document.querySelector('ul'))
+    // console.log(document.querySelector('li:last-child'))
 
 
 })()
