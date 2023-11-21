@@ -23,11 +23,20 @@
 
 let ul = document.createElement('ul')
     let li = document.createElement('li')
+    li.innerHTML = 'text'
+    const arr = [1,2,3,4,5,6]
 
-    document.body.append(ul)
-    console.log(document.querySelector(ul))
+    function generateList(array){
+    if (!Array.isArray(array)) return console.log('Error')
 
-    // console.log(document.body)
-    console.log(ul)
+    }
+
+    console.log(!Array.isArray(arr))
+
+
+    // document.body.append(ul)
+    // document.querySelector('ul').append(li)
+    // console.log(document.querySelector('ul'))
+
 
 })()
