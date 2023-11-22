@@ -19,38 +19,44 @@
 // <li>3</li>
 // </ul>
 
+
 (function (){
 
-// let ul = document.createElement('ul')
-//     let li = document.createElement('li')
-//     li.innerHTML = 'text'
+
     const a = 5
     const arr = [1,2,3,4,
-        [1,2,3]
+        [1,2,
+            [1,2]
+            ,3]
         ,5,6]
 
     function generateList(array){
     if (!Array.isArray(array)) return console.log('Error, argument isn`t array')
         let ul = document.createElement('ul')
-        if (document.querySelector('ul:last-child'))
-        document.querySelector('ul:last-child').append(ul)
-         else   document.body.append(ul);
 
-        for (let arrayElement of array) {
-            if (Array.isArray(arrayElement)) generateList(arrayElement)
+        if ((document.querySelector('ul:last-child'))===null) document.body.append(ul)
+        else {
+            document.querySelector('ul:last-child').append(ul)
+        }
+        for (let i=0;i<array.length; i++) {
+            if (Array.isArray(array[i])) generateList(array[i])
             let li = document.createElement('li')
-            li.innerHTML = arrayElement
-            document.querySelector('ul:last-child').append(li)
+            if (Array.isArray(array[i])) continue
+                li.innerHTML = array[i]
+            ul.append(li)
         }
     }
-    generateList(arr)
+    // generateList(arr)
 
-    // console.log(!Array.isArray(arr))
+//     let ul = document.createElement('ul')
+//     let li = document.createElement('li')
+//     let li2 = document.createElement('li')
+//     li.innerHTML = 'text'
 
+//     let b = document.querySelector('li')
+//     b.querySelector('li:last-child')
+//     console.log(b)
 
-    // document.body.append(ul)
-    // document.querySelector('ul').append(li)
-    // console.log(document.querySelector('li:last-child'))
 
 
 })()
