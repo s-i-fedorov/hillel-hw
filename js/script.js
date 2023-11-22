@@ -33,29 +33,28 @@
     function generateList(array){
     if (!Array.isArray(array)) return console.log('Error, argument isn`t array')
         let ul = document.createElement('ul')
+        let liLast = document.querySelectorAll('li')
 
         if ((document.querySelector('ul:last-child'))===null) document.body.append(ul)
         else {
-            document.querySelector('ul:last-child').append(ul)
+            liLast[liLast.length-1].append(ul)
         }
         for (let i=0;i<array.length; i++) {
             if (Array.isArray(array[i])) generateList(array[i])
             let li = document.createElement('li')
             if (Array.isArray(array[i])) continue
-                li.innerHTML = array[i]
+                    let num = liLast[liLast.length-1].innerHTML
+                    li.innerHTML = num+array[i]
+                    // li.innerHTML = array[i]
             ul.append(li)
         }
     }
-    // generateList(arr)
+    generateList(arr)
 
-//     let ul = document.createElement('ul')
-//     let li = document.createElement('li')
-//     let li2 = document.createElement('li')
-//     li.innerHTML = 'text'
+    let liLast2 = document.querySelectorAll('li')
 
-//     let b = document.querySelector('li')
-//     b.querySelector('li:last-child')
-//     console.log(b)
+    console.log(liLast2[liLast2.length-1].innerHTML)
+
 
 
 
