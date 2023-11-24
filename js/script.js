@@ -5,8 +5,7 @@
 
     // mouseover / mouseout
 const ghostDiv = document.createElement('div')
-    ghostDiv.setAttribute('max-width','100px')
-    ghostDiv.setAttribute('max-height','100px')
+    ghostDiv.setAttribute('style','width: 100px; height: 100px; background-color: green;')
     document.body.append(ghostDiv)
     console.log(ghostDiv)
 })()
