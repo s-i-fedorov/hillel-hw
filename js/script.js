@@ -4,16 +4,18 @@
 (function (){
 
 let tab = document.createElement('table')
-    let tr = document.createElement('tr')
-    let td = document.createElement('td')
+    // let tr = document.createElement('tr')
+    // let td = document.createElement('td')
     document.body.append(tab)
     for(let i=0;i<10;i++){
+        let tr = document.createElement('tr')
         tab.append(tr)
         for(let a=0;a<10;a++){
+            // tr.append(td)
+            // let lTd = document.querySelector('td:last-of-type')
+            let td = document.createElement('td')
+            td.textContent=i*10+a+1;
             tr.append(td)
-            let qS = document.querySelectorAll('td')
-            let lTd = qS[qS.length-1]
-            lTd.innerHTML=i+10+a;
 
         }
 
