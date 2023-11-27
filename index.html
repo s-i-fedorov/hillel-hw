@@ -6,52 +6,50 @@
 </head>
 <style>
     .container{
-        display: flex;
         width: 1440px;
         margin: 0 auto;
-        flex-wrap: wrap;
-        gap: 1%;
     }
-    .images{
-        /*width: 33%;*/
+    .row{
+        display: flex;
+        gap: 10px;
+    }
+    .row_tabs{
         border: black solid 1px;
-        flex: 0 1 32.5%;
+        border-bottom: none ;
+        flex: 0 0 100px;
     }
-    .images img{
-        max-width: 100%;
+    .content{
+        width: 480px;
+        height: 320px;
+        border: black solid 1px;
+        /*display: none;*/
+    }
+    .test{
+        height: 50px;
     }
 
 </style>
 <body>
 <div class="container">
-<div class="images">
-    <img class="test" src="./images/annas-hummingbird-8195150_640.jpg" alt="sdf">
+    <div class="row">
+        <div class="row_tabs">Tab1</div>
+        <div class="row_tabs">Tab2</div>
+        <div class="row_tabs">Tab3</div>
+    </div>
+    <div class="content content1">Tab 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam,
+        assumenda corporis cumque eveniet facere laboriosam laudantium molestias natus nesciunt,
+        nostrum numquam officiis quasi quia quisquam repudiandae rerum voluptates voluptatum.</div>
+    <div class="content content2">Tab 2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam,
+        assumenda corporis cumque eveniet facere laboriosam laudantium molestias natus nesciunt,
+        nostrum numquam officiis quasi quia quisquam repudiandae rerum voluptates voluptatum.</div>
+    <div class="content content3">Tab 3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam,
+        assumenda corporis cumque eveniet facere laboriosam laudantium molestias natus nesciunt,
+        nostrum numquam officiis quasi quia quisquam repudiandae rerum voluptates voluptatum.</div>
+
 </div>
-    <div class="images">
-        <img src="./images/beach-8262340_640.jpg" alt="">
-    </div>
-    <div class="images">
-        <img src="./images/bird-8386001_640.jpg" alt="">
-    </div>
-    <div class="images">
-        <img src="./images/building-8357270_640.jpg" alt="">
-    </div>
-    <div class="images">
-        <img src="./images/chain-8332727_640.jpg" alt="">
-    </div>
-    <div class="images">
-        <img src="./images/honey-bee-8345726_640.jpg" alt="">
-    </div>
-    <div class="images">
-        <img src="./images/lemur-8232231_640.png" alt="">
-    </div>
-    <div class="images">
-        <img src="./images/pine-forest-8336619_640.jpg" alt="">
-    </div>
-    <div class="images">
-        <img src="./images/squirrel-8367079_640.jpg" alt="">
-    </div>
-</div>
+<div class="test"></div>
+<div class="test"></div>
+<div class="test"></div>
 <script src="./js/script.js"></script>
 </body>
 </html>
