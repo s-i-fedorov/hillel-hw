@@ -24,17 +24,31 @@
         border: black solid 1px;
         /*display: none;*/
     }
-    .test{
-        height: 50px;
+    .tab1{background-color: lightgray}
+    .tab2{}
+    .tab3{}
+    .content1{
+        position: absolute;
+        z-index: 1;
+        background-color: lightgray;
     }
-
+    .content2{
+        position: absolute;
+        z-index: 0;
+        background-color: lightgray;
+    }
+    .content3{
+         position: absolute;
+        z-index: 0;
+        background-color: lightgray;
+     }
 </style>
 <body>
 <div class="container">
     <div class="row">
-        <div class="row_tabs">Tab1</div>
-        <div class="row_tabs">Tab2</div>
-        <div class="row_tabs">Tab3</div>
+        <div class="row_tabs tab1">Tab1</div>
+        <div class="row_tabs tab2">Tab2</div>
+        <div class="row_tabs tab3">Tab3</div>
     </div>
     <div class="content content1">Tab 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam,
         assumenda corporis cumque eveniet facere laboriosam laudantium molestias natus nesciunt,
