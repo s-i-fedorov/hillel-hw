@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <style>
+
     .container{
         width: 1440px;
         margin: 0 auto;
@@ -28,16 +29,29 @@
         position: absolute;
     }
     .tab1{background-color: lightgray}
-    .tab2{}
-    .tab3{}
     .content1{
         position: absolute;
         z-index: 1;
         background-color: lightgray;
     }
-
+    .container2{
+        display: flex;
+        width: 1440px;
+        margin: 300px auto 0;
+        flex-wrap: wrap;
+        gap: 1%;
+    }
+    .images{
+        max-width: 200px;
+        border: black solid 1px;
+        flex: 0 1 32.5%;
+    }
+    .images img{
+        max-width: 100%;
+    }
 </style>
 <body>
+
 <div class="container">
     <div class="row">
         <div class="row_tabs tab1">Tab1</div>
@@ -55,9 +69,36 @@
         nostrum numquam officiis quasi quia quisquam repudiandae rerum voluptates voluptatum.</div>
 
 </div>
-<div class="test"></div>
-<div class="test"></div>
-<div class="test"></div>
+<div class="container2">
+    <div class="images">
+        <img class="test" src="./images/annas-hummingbird-8195150_640.jpg" alt="sdf">
+    </div>
+    <div class="images">
+        <img src="./images/beach-8262340_640.jpg" alt="">
+    </div>
+    <div class="images">
+        <img src="./images/bird-8386001_640.jpg" alt="">
+    </div>
+    <div class="images">
+        <img src="./images/building-8357270_640.jpg" alt="">
+    </div>
+    <div class="images">
+        <img src="./images/chain-8332727_640.jpg" alt="">
+    </div>
+    <div class="images">
+        <img src="./images/honey-bee-8345726_640.jpg" alt="">
+    </div>
+    <div class="images">
+        <img src="./images/lemur-8232231_640.png" alt="">
+    </div>
+    <div class="images">
+        <img src="./images/pine-forest-8336619_640.jpg" alt="">
+    </div>
+    <div class="images">
+        <img src="./images/squirrel-8367079_640.jpg" alt="">
+    </div>
+</div>
+
 <script src="./js/script.js"></script>
 </body>
 </html>
