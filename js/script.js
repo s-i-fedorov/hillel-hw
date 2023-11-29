@@ -12,6 +12,7 @@
     // const tab2 = document.querySelector('.tab2')
     // const tab3 = document.querySelector('.tab3')
     const row = document.querySelector('.row')
+
     // const content1 = document.querySelector('.content1')
     // const content2 = document.querySelector('.content2')
     // const content3 = document.querySelector('.content3')
@@ -40,9 +41,18 @@
     //     content2.style.zIndex='0'
     //     content3.style.zIndex='1'
     // })
+    let selectedEl
+    const color = (elem)=>{
+        if(selectedEl) selectedEl.style.backgroundColor=null;
+        selectedEl=elem
+        elem.style.backgroundColor='lightgray';
+    }
     row.addEventListener('click',(ev)=>{
         const target = ev.target
-        target.style.backgroundColor = 'lightgray'
+        console.log(target.hasAttribute('[.row_tabs]'));
+        if(!(target===document.querySelector('.row_tabs'))) return
+        // const elemCol = target.style.backgroundColor
+        color(target)
 
         console.log(ev.target);
     })
