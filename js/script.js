@@ -41,20 +41,25 @@
     //     content2.style.zIndex='0'
     //     content3.style.zIndex='1'
     // })
-    let selectedEl
+    let selectedEl=null;
     const color = (elem)=>{
         if(selectedEl) selectedEl.style.backgroundColor=null;
+        const allTabs = document.querySelectorAll('.row_tabs')
+        allTabs.forEach((tabCol)=>{
+            tabCol.style.backgroundColor='white';
+        })
         selectedEl=elem
         elem.style.backgroundColor='lightgray';
     }
     row.addEventListener('click',(ev)=>{
         const target = ev.target
-        console.log(target.hasAttribute('[.row_tabs]'));
-        if(!(target===document.querySelector('.row_tabs'))) return
+        console.log(target)
+        console.log(target.classList.contains('row_tabs'));
+        // console.log(target.hasAttribute("[row_tabs]"));
+        if(!(target.classList.contains('row_tabs'))) return
         // const elemCol = target.style.backgroundColor
         color(target)
 
-        console.log(ev.target);
     })
     // console.log(row)
 })()
