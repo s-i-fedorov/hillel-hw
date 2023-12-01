@@ -8,58 +8,58 @@
     //     Завдання: Створіть систему вкладок (tabs), де клік по вкладці показує відповідний контент, а інші
     // вкладки стають прихованими. Технології: Використання JavaScript для переключення між вкладками і
     // управління видимістю контенту.
-    // const tab1 = document.querySelector('.tab1')
-    // const tab2 = document.querySelector('.tab2')
-    // const tab3 = document.querySelector('.tab3')
-    const row = document.querySelector('.row')
 
-    // const content1 = document.querySelector('.content1')
-    // const content2 = document.querySelector('.content2')
-    // const content3 = document.querySelector('.content3')
-    // tab1.addEventListener('click',(ev)=>{
-    //     tab1.style.backgroundColor='lightgray'
-    //     tab2.style.backgroundColor='white'
-    //     tab3.style.backgroundColor='white'
-    //     content1.style.zIndex='1'
-    //     content2.style.zIndex='0'
-    //     content3.style.zIndex='0'
-    //     // console.log(ev.target);
-    // })
-    // tab2.addEventListener('click',()=>{
-    //     tab1.style.backgroundColor='white'
-    //     tab2.style.backgroundColor='lightgray'
-    //     tab3.style.backgroundColor='white'
-    //     content1.style.zIndex='0'
-    //     content2.style.zIndex='1'
-    //     content3.style.zIndex='0'
-    // })
-    // tab3.addEventListener('click',()=>{
-    //     tab1.style.backgroundColor='white'
-    //     tab2.style.backgroundColor='white'
-    //     tab3.style.backgroundColor='lightgray'
-    //     content1.style.zIndex='0'
-    //     content2.style.zIndex='0'
-    //     content3.style.zIndex='1'
-    // })
+
+    const row = document.querySelector('.row')
+    const container2 = document.querySelector('.container2')
+
     let selectedEl=null;
+    let selectedCont = null;
+    const tab1 = document.querySelector('.tab1')
+    tab1.style.backgroundColor='lightgray'
     const color = (elem)=>{
         if(selectedEl) selectedEl.style.backgroundColor=null;
-        const allTabs = document.querySelectorAll('.row_tabs')
-        allTabs.forEach((tabCol)=>{
-            tabCol.style.backgroundColor='white';
-        })
+        if(!(elem.getAttribute('data-tab')==='tab1'))
+            tab1.style.backgroundColor=null
         selectedEl=elem
         elem.style.backgroundColor='lightgray';
     }
+    const showContent = (target)=>{
+        const contentAttr = target.getAttribute('data-tab')+'-content';
+        const divContent = document.querySelector(`[${contentAttr}]`);
+        if(selectedCont) selectedCont.style.zIndex='0';
+        selectedCont=divContent
+        divContent.style.zIndex='1';
+    }
+
     row.addEventListener('click',(ev)=>{
         const target = ev.target
-        console.log(target)
-        console.log(target.classList.contains('row_tabs'));
-        // console.log(target.hasAttribute("[row_tabs]"));
         if(!(target.classList.contains('row_tabs'))) return
-        // const elemCol = target.style.backgroundColor
         color(target)
-
+        showContent(target)
     })
-    // console.log(row)
+
+    const showModal = (target)=>{
+        const modalElem = document.createElement('div')
+        modalElem.className = 'modal'
+        modalElem.appendChild(target)
+        modalElem.addEventListener('click',(elem)=>{
+            console.log(elem.target)
+        })
+
+        document.body.append(modalElem)
+        console.log(target)
+    }
+
+    console.log(document.querySelector('.container2'));
+
+    container2.addEventListener('click', (ev)=>{
+        const target = ev.target
+        // console.log(target.hasAttribute('data-img'))
+        if(!(target.hasAttribute('data-img'))) return
+        console.log(target)
+
+        showModal(target)
+    })
+
 })()

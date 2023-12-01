@@ -28,7 +28,6 @@
         background-color: lightgray;
         position: absolute;
     }
-    .tab1{background-color: lightgray}
     .content1{
         position: absolute;
         z-index: 1;
@@ -49,53 +48,62 @@
     .images img{
         max-width: 100%;
     }
+    .modal{
+        width: 600px;
+        height: 500px;
+        margin: 0 auto;
+        position: absolute;
+        top: 300px;
+        left: 0;
+        right: 0;
+    }
 </style>
 <body>
 
 <div class="container">
     <div class="row">
-        <div class="row_tabs tab1">Tab1</div>
-        <div class="row_tabs tab2">Tab2</div>
-        <div class="row_tabs tab3">Tab3</div>
+        <div class="row_tabs tab1" data-tab="data-tab1">Tab1</div>
+        <div class="row_tabs tab2" data-tab="data-tab2">Tab2</div>
+        <div class="row_tabs tab3" data-tab="data-tab3">Tab3</div>
     </div>
-    <div class="content content1">Tab 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam,
+    <div class="content content1" data-tab1-content>Tab 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam,
         assumenda corporis cumque eveniet facere laboriosam laudantium molestias natus nesciunt,
         nostrum numquam officiis quasi quia quisquam repudiandae rerum voluptates voluptatum.</div>
-    <div class="content content2">Tab 2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam,
+    <div class="content content2" data-tab2-content>Tab 2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam,
         assumenda corporis cumque eveniet facere laboriosam laudantium molestias natus nesciunt,
         nostrum numquam officiis quasi quia quisquam repudiandae rerum voluptates voluptatum.</div>
-    <div class="content content3">Tab 3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam,
+    <div class="content content3" data-tab3-content>Tab 3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam,
         assumenda corporis cumque eveniet facere laboriosam laudantium molestias natus nesciunt,
         nostrum numquam officiis quasi quia quisquam repudiandae rerum voluptates voluptatum.</div>
 
 </div>
 <div class="container2">
     <div class="images">
-        <img class="test" src="./images/annas-hummingbird-8195150_640.jpg" alt="sdf">
+        <img data-img src="./images/annas-hummingbird-8195150_640.jpg" alt="sdf">
     </div>
     <div class="images">
-        <img src="./images/beach-8262340_640.jpg" alt="">
+        <img data-img src="./images/beach-8262340_640.jpg" alt="">
     </div>
     <div class="images">
-        <img src="./images/bird-8386001_640.jpg" alt="">
+        <img data-img src="./images/bird-8386001_640.jpg" alt="">
     </div>
     <div class="images">
-        <img src="./images/building-8357270_640.jpg" alt="">
+        <img data-img src="./images/building-8357270_640.jpg" alt="">
     </div>
     <div class="images">
-        <img src="./images/chain-8332727_640.jpg" alt="">
+        <img data-img src="./images/chain-8332727_640.jpg" alt="">
     </div>
     <div class="images">
-        <img src="./images/honey-bee-8345726_640.jpg" alt="">
+        <img data-img src="./images/honey-bee-8345726_640.jpg" alt="">
     </div>
     <div class="images">
-        <img src="./images/lemur-8232231_640.png" alt="">
+        <img data-img src="./images/lemur-8232231_640.png" alt="">
     </div>
     <div class="images">
-        <img src="./images/pine-forest-8336619_640.jpg" alt="">
+        <img data-img src="./images/pine-forest-8336619_640.jpg" alt="">
     </div>
     <div class="images">
-        <img src="./images/squirrel-8367079_640.jpg" alt="">
+        <img data-img src="./images/squirrel-8367079_640.jpg" alt="">
     </div>
 </div>
 
