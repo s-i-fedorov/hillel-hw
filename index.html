@@ -10,102 +10,32 @@
         width: 1440px;
         margin: 0 auto;
     }
-    .row{
-        display: flex;
-        gap: 10px;
-    }
-    .row_tabs{
-        border: black solid 1px;
-        border-bottom: none ;
-        padding: 2px;
-        flex: 0 0 100px;
+    .button{
+        margin: 0 auto;
+        width: 300px;
+        padding: 25px 0;
+        font-size: 20px;
+        text-align: center;
+        border-radius: 5px;
+        background-color: darkgreen;
     }
     .content{
-        width: 480px;
-        height: 220px;
-        padding: 10px;
-        border: black solid 1px;
-        background-color: lightgray;
-        position: absolute;
-    }
-    .content1{
-        position: absolute;
-        z-index: 1;
-        background-color: lightgray;
-    }
-    .container2{
-        display: flex;
-        width: 1440px;
-        margin: 300px auto 0;
-        flex-wrap: wrap;
-        gap: 1%;
-    }
-    .images{
-        max-width: 200px;
-        border: black solid 1px;
-        flex: 0 1 32.5%;
-    }
-    .images img{
-        max-width: 100%;
-    }
-    .modal{
-        width: 600px;
+        max-width: 700px;
         height: 500px;
         margin: 0 auto;
-        position: absolute;
-        top: 300px;
-        left: 0;
-        right: 0;
+        border: black solid 1px;
     }
+
+
 </style>
 <body>
 
 <div class="container">
-    <div class="row">
-        <div class="row_tabs tab1" data-tab="data-tab1">Tab1</div>
-        <div class="row_tabs tab2" data-tab="data-tab2">Tab2</div>
-        <div class="row_tabs tab3" data-tab="data-tab3">Tab3</div>
-    </div>
-    <div class="content content1" data-tab1-content>Tab 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam,
-        assumenda corporis cumque eveniet facere laboriosam laudantium molestias natus nesciunt,
-        nostrum numquam officiis quasi quia quisquam repudiandae rerum voluptates voluptatum.</div>
-    <div class="content content2" data-tab2-content>Tab 2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam,
-        assumenda corporis cumque eveniet facere laboriosam laudantium molestias natus nesciunt,
-        nostrum numquam officiis quasi quia quisquam repudiandae rerum voluptates voluptatum.</div>
-    <div class="content content3" data-tab3-content>Tab 3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam,
-        assumenda corporis cumque eveniet facere laboriosam laudantium molestias natus nesciunt,
-        nostrum numquam officiis quasi quia quisquam repudiandae rerum voluptates voluptatum.</div>
+<div class="button">Show picture</div>
+    <div class="content"></div>
+<!--    <img src="images/1.jpg" alt="">-->
+</div>
 
-</div>
-<div class="container2">
-    <div class="images">
-        <img data-img src="./images/annas-hummingbird-8195150_640.jpg" alt="sdf">
-    </div>
-    <div class="images">
-        <img data-img src="./images/beach-8262340_640.jpg" alt="">
-    </div>
-    <div class="images">
-        <img data-img src="./images/bird-8386001_640.jpg" alt="">
-    </div>
-    <div class="images">
-        <img data-img src="./images/building-8357270_640.jpg" alt="">
-    </div>
-    <div class="images">
-        <img data-img src="./images/chain-8332727_640.jpg" alt="">
-    </div>
-    <div class="images">
-        <img data-img src="./images/honey-bee-8345726_640.jpg" alt="">
-    </div>
-    <div class="images">
-        <img data-img src="./images/lemur-8232231_640.png" alt="">
-    </div>
-    <div class="images">
-        <img data-img src="./images/pine-forest-8336619_640.jpg" alt="">
-    </div>
-    <div class="images">
-        <img data-img src="./images/squirrel-8367079_640.jpg" alt="">
-    </div>
-</div>
 
 <script src="./js/script.js"></script>
 </body>
