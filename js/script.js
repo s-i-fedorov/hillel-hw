@@ -40,24 +40,25 @@
     })
 
     const showModal = (target)=>{
+        let modalExist = document.querySelector('.modal')
+        if(modalExist) modalExist.remove()
         const modalElem = document.createElement('div')
         modalElem.className = 'modal'
-        modalElem.appendChild(target)
-        modalElem.addEventListener('click',(elem)=>{
-            console.log(elem.target)
-        })
-
+        const src = target.getAttribute('src')
+        const modalCont = document.createElement('img')
+        modalCont.setAttribute('src',src)
+        modalElem.appendChild(modalCont)
         document.body.append(modalElem)
-        console.log(target)
+        modalElem.addEventListener('click',(elem)=>{
+            modalElem.remove()
+        })
     }
 
     console.log(document.querySelector('.container2'));
 
     container2.addEventListener('click', (ev)=>{
         const target = ev.target
-        // console.log(target.hasAttribute('data-img'))
         if(!(target.hasAttribute('data-img'))) return
-        console.log(target)
 
         showModal(target)
     })
