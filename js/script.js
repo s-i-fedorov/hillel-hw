@@ -49,12 +49,11 @@
         modalCont.setAttribute('src',src)
         modalElem.appendChild(modalCont)
         document.body.append(modalElem)
-        modalElem.addEventListener('click',(elem)=>{
+        modalElem.addEventListener('click',()=>{
             modalElem.remove()
         })
     }
 
-    console.log(document.querySelector('.container2'));
 
     container2.addEventListener('click', (ev)=>{
         const target = ev.target
