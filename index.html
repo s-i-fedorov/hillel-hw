@@ -3,8 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body{
+            background-color: darkslategray;
+            color: aquamarine;
+        }
+        .container{
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+        .flex{
+            display: flex;
+            align-items: center;
+        }
+        label{
+            font-size: 20px;
+        }
+        select{
+            display: block;
+            font-size: 20px;
+        }
+        .select-block{
+            margin-left: auto;
+        }
+    </style>
 </head>
 <body>
+<div class="container">
+    <div class="flex">
+    <h1>There is some page</h1>
+        <div class="select-block">
+        <label >Please, select the theme</label>
+        <select name="theme" >
+            <option value="1">light theme</option>
+            <option value="2">dark theme</option>
+        </select>
+        </div>
+    </div>
+    <h2>There is some content</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid atque consequatur debitis
+        delectus dignissimos dolorem doloremque dolorum fuga fugit in inventore, labore optio, placeat quaerat
+        reprehenderit totam ullam voluptatum.</p>
+</div>
 <script src="./js/script.js"></script>
 </body>
 </html>
