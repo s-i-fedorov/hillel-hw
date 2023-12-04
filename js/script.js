@@ -10,14 +10,21 @@
         e.preventDefault()
         const {target} = e
         const data = {}
-        // const tar = target.querySelectorAll('input, textarea, select')
         target
             .querySelectorAll('input, textarea, select')
-            .forEach(elem=>{
-                data[elem.name] = elem.value
+            .forEach(el=>{
+                if(el.name==='terms'){
+                    data['agreed'] = el.value
+                }
+                else
+                if(el.name==='option'){
+                    data['selected option'] = el.value
+                }
+                else{
+                    data[el.name] = el.value
+                }
             })
         saveData(data)
-        // console.log(data)
     }
 
     const loadedHandler = (e)=>{
