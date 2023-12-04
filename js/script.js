@@ -13,4 +13,17 @@
 // на странице.
 (function (){
 
+    const setBodyTheme = (e)=>{
+        let value = e.target.value
+        const bodyTheme = document.querySelector('body')
+        if(+value===0) {
+            bodyTheme.style.backgroundColor= 'white'
+            bodyTheme.style.color= 'black'
+        } else {
+            bodyTheme.style.backgroundColor = 'darkslategray'
+            bodyTheme.style.color = 'aquamarine'
+        }
+        }
+    const select = document.querySelector('select');
+    select.addEventListener('change', setBodyTheme)
 })()
