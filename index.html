@@ -35,18 +35,23 @@
         }
         .goods{
             display: flex;
-            justify-content: flex-start;
+            justify-content: space-around;
+
         }
         .item-buttons{
             display: flex;
-            justify-content: flex-start;
+            padding: 10px;
+            justify-content: space-between;
+            gap: 5px;
         }
         .item-buttons-btn{
             border: black solid 1px;
+            box-sizing: border-box;
             border-radius: 5px;
-            margin: 5px;
+            /*margin: 10px;*/
             padding: 5px;
             background-color: darkolivegreen;
+            flex: 1 0 calc(50% - 5px);
         }
 
 
@@ -79,9 +84,39 @@
                 <div class="item-buttons-btn">add to favorite</div>
                 </div>
             </div>
+            <div class="goods-list-item">
+                <h3 class="item-name"></h3>
+                <img src="./img/imagesMouse.jpeg" alt="there will be a picture" class="item-picture" width="200" height="200">
+                <div class="item-buttons">
+                    <div class="item-buttons-btn">add to favorite</div>
+                </div>
+            </div>
+            <div class="goods-list-item">
+                <h3 class="item-name"></h3>
+                <img src="./img/imagesMouse.jpeg" alt="there will be a picture" class="item-picture" width="200" height="200">
+                <div class="item-buttons">
+                    <div class="item-buttons-btn">add to favorite</div>
+                </div>
+            </div>
+            <div class="goods-list-item">
+                <h3 class="item-name"></h3>
+                <img src="./img/imagesMouse.jpeg" alt="there will be a picture" class="item-picture" width="200" height="200">
+                <div class="item-buttons">
+                    <div class="item-buttons-btn">add to favorite</div>
+                </div>
+            </div>
 
         </div>
         <div class="favourites">
+            <h3 class="favourites-title flex">&darr; Favourites goods &darr;</h3>
+            <div class="goods-list-item">
+                <h3 class="item-name"></h3>
+                <img src="./img/imagesMouse.jpeg" alt="there will be a picture" class="item-picture" width="200" height="200">
+                <div class="item-buttons">
+                    <div class="item-buttons-btn">add to favorite</div>
+                    <div class="item-buttons-btn">Del from favorite</div>
+                </div>
+            </div>
         </div>
         </div>
     </section>
