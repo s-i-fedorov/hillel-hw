@@ -15,6 +15,7 @@
         .flex{
             display: flex;
             align-items: center;
+            justify-content: center;
         }
         label{
             font-size: 20px;
@@ -26,6 +27,29 @@
         .select-block{
             margin-left: auto;
         }
+        .goods-list-item{
+            border: black solid 1px;
+            border-radius: 5px;
+            width: 300px;
+            text-align: center;
+        }
+        .goods{
+            display: flex;
+            justify-content: flex-start;
+        }
+        .item-buttons{
+            display: flex;
+            justify-content: flex-start;
+        }
+        .item-buttons-btn{
+            border: black solid 1px;
+            border-radius: 5px;
+            margin: 5px;
+            padding: 5px;
+            background-color: darkolivegreen;
+        }
+
+
     </style>
 </head>
 <body>
@@ -44,6 +68,23 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid atque consequatur debitis
         delectus dignissimos dolorem doloremque dolorum fuga fugit in inventore, labore optio, placeat quaerat
         reprehenderit totam ullam voluptatum.</p>
+    <section >
+        <h2 class="flex">&darr; List of goods &darr;</h2>
+        <div class="goods">
+        <div class="goods-list">
+            <div class="goods-list-item">
+                <h3 class="item-name"></h3>
+                <img src="./img/imagesMouse.jpeg" alt="there will be a picture" class="item-picture" width="200" height="200">
+                <div class="item-buttons">
+                <div class="item-buttons-btn">add to favorite</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="favourites">
+        </div>
+        </div>
+    </section>
 </div>
 <script src="./js/script.js"></script>
 </body>
