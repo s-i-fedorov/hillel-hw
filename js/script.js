@@ -24,6 +24,23 @@
             bodyTheme.style.color = 'aquamarine'
         }
         }
+
+    const moveProduct = (e)=>{
+        e.stopPropagation()
+        if(e.target.hasAttribute('data-itemBtn')){
+        const favourites = document.querySelector('[data-favorites]');
+        const productItem = e.target.parentElement
+        console.log(productItem)
+        let favProductItem = productItem.cloneNode(true)
+            favProductItem.querySelector('[data-itemBtn]').
+                innerHTML='Del from favorite'
+        favourites.appendChild(favProductItem)}
+
+
+    }
+
     const select = document.querySelector('select');
+    const goodsList = document.querySelector('[data-goodsList]');
     select.addEventListener('change', setBodyTheme)
+    goodsList.addEventListener('click', moveProduct)
 })()

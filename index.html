@@ -36,22 +36,28 @@
         .goods{
             display: flex;
             justify-content: space-around;
-
         }
-        .item-buttons{
+        .goods-list{
+            flex: 0 1 30%;
+            gap: 10px;
             display: flex;
-            padding: 10px;
-            justify-content: space-between;
-            gap: 5px;
+            flex-direction: column;
+            align-items: center;
         }
-        .item-buttons-btn{
+        .favorites{
+            flex: 0 1 30%;
+            gap: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .item-button{
             border: black solid 1px;
-            box-sizing: border-box;
             border-radius: 5px;
-            /*margin: 10px;*/
+            margin: 10px;
             padding: 5px;
             background-color: darkolivegreen;
-            flex: 1 0 calc(50% - 5px);
         }
 
 
@@ -76,47 +82,36 @@
     <section >
         <h2 class="flex">&darr; List of goods &darr;</h2>
         <div class="goods">
-        <div class="goods-list">
-            <div class="goods-list-item">
+        <div data-goodsList class="goods-list">
+            <div data-productItem class="goods-list-item">
                 <h3 class="item-name"></h3>
                 <img src="./img/imagesMouse.jpeg" alt="there will be a picture" class="item-picture" width="200" height="200">
-                <div class="item-buttons">
-                <div class="item-buttons-btn">add to favorite</div>
-                </div>
+                <div data-itemBtn class="item-button">Add to favorite</div>
             </div>
-            <div class="goods-list-item">
+            <div data-productItem class="goods-list-item">
                 <h3 class="item-name"></h3>
                 <img src="./img/imagesMouse.jpeg" alt="there will be a picture" class="item-picture" width="200" height="200">
-                <div class="item-buttons">
-                    <div class="item-buttons-btn">add to favorite</div>
-                </div>
+                <div data-itemBtn class="item-button">Add to favorite</div>
             </div>
-            <div class="goods-list-item">
+            <div data-productItem class="goods-list-item">
                 <h3 class="item-name"></h3>
                 <img src="./img/imagesMouse.jpeg" alt="there will be a picture" class="item-picture" width="200" height="200">
-                <div class="item-buttons">
-                    <div class="item-buttons-btn">add to favorite</div>
-                </div>
+                <div data-itemBtn class="item-button">Add to favorite</div>
             </div>
-            <div class="goods-list-item">
+            <div data-productItem class="goods-list-item">
                 <h3 class="item-name"></h3>
                 <img src="./img/imagesMouse.jpeg" alt="there will be a picture" class="item-picture" width="200" height="200">
-                <div class="item-buttons">
-                    <div class="item-buttons-btn">add to favorite</div>
-                </div>
+                <div data-itemBtn class="item-button">Add to favorite</div>
             </div>
 
         </div>
-        <div class="favourites">
-            <h3 class="favourites-title flex">&darr; Favourites goods &darr;</h3>
-            <div class="goods-list-item">
-                <h3 class="item-name"></h3>
-                <img src="./img/imagesMouse.jpeg" alt="there will be a picture" class="item-picture" width="200" height="200">
-                <div class="item-buttons">
-                    <div class="item-buttons-btn">add to favorite</div>
-                    <div class="item-buttons-btn">Del from favorite</div>
-                </div>
-            </div>
+        <div data-favorites class="favorites">
+            <h3 class="favorites-title flex">&darr; Favorites goods &darr;</h3>
+<!--            <div class="goods-list-item">-->
+<!--                <h3 class="item-name"></h3>-->
+<!--                <img src="./img/imagesMouse.jpeg" alt="there will be a picture" class="item-picture" width="200" height="200">-->
+<!--                    <div data-itemBtn class="item-button">Del from favorite</div>-->
+<!--            </div>-->
         </div>
         </div>
     </section>
