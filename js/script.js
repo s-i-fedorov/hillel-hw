@@ -13,34 +13,78 @@
 // на странице.
 (function (){
 
-    const setBodyTheme = (e)=>{
+    const setBodyTheme = (value)=>{
+    const bodyTheme = document.querySelector('body')
+    if(+value===0) {
+        bodyTheme.style.backgroundColor= 'white'
+        bodyTheme.style.color= 'black'
+    } else {
+        bodyTheme.style.backgroundColor = 'darkslategray'
+        bodyTheme.style.color = 'aquamarine'
+    }
+    localStorage.setItem('themeValue', value)
+    }
+
+    const selectTheme = (e)=>{
         let value = e.target.value
-        const bodyTheme = document.querySelector('body')
-        if(+value===0) {
-            bodyTheme.style.backgroundColor= 'white'
-            bodyTheme.style.color= 'black'
-        } else {
-            bodyTheme.style.backgroundColor = 'darkslategray'
-            bodyTheme.style.color = 'aquamarine'
+        setBodyTheme(value)
         }
+
+        const createElem = (id)=>{
+            const productItem = document.getElementById(id)
+            const favourites = document.querySelector('[data-favorites]');
+            let favProductItem = productItem.cloneNode(true)
+            favProductItem.querySelector('[data-itemBtn]').
+                innerHTML='Del from favorite'
+            favProductItem.setAttribute('data-favorite','')
+            favourites.appendChild(favProductItem)
+        }
+
+        const resetStorage = (elementId,e)=>{
+            const productItem = e.target.parentElement
+            // console.log(productItem.childNodes);
+            const getData =JSON.parse(localStorage.getItem('dataList'))
+            if(!getData) localStorage.setItem('dataList', JSON.stringify([elementId]))
+            else if (productItem.parentElement.hasAttribute('data-favorites')){
+                console.log(productItem.parentElement.children)
+            }
+            else {
+                getData.push(elementId)
+                localStorage.setItem('dataList', JSON.stringify(getData))
+            }
         }
 
     const moveProduct = (e)=>{
         e.stopPropagation()
-        if(e.target.hasAttribute('data-itemBtn')){
-        const favourites = document.querySelector('[data-favorites]');
         const productItem = e.target.parentElement
-        console.log(productItem)
-        let favProductItem = productItem.cloneNode(true)
-            favProductItem.querySelector('[data-itemBtn]').
-                innerHTML='Del from favorite'
-        favourites.appendChild(favProductItem)}
+
+        const elemId = productItem.getAttribute('id')
+
+        const element = e.target
+        if(element.hasAttribute('data-itemBtn')){
+            if(productItem.parentElement.hasAttribute('data-goodslist')){
+                createElem(elemId)
+                resetStorage(elemId,e)
+
+            }
+            if(productItem.parentElement.hasAttribute('data-favorites')) {
+                resetStorage(elemId,e)
+                productItem.remove()
+            }
+        }
 
 
     }
 
+    const checkStorage = ()=>{
+        let themeValue = +localStorage.getItem('themeValue')
+        setBodyTheme(themeValue)
+
+    }
+
     const select = document.querySelector('select');
-    const goodsList = document.querySelector('[data-goodsList]');
-    select.addEventListener('change', setBodyTheme)
-    goodsList.addEventListener('click', moveProduct)
+    const goods = document.querySelector('[data-goods]');
+    select.addEventListener('change', selectTheme)
+    goods.addEventListener('click', moveProduct)
+    document.addEventListener('DOMContentLoaded', checkStorage)
 })()
