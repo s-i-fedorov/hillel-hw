@@ -30,23 +30,23 @@
         setBodyTheme(value)
         }
 
-        const createElem = (id)=>{
+    const createElem = (id)=>{
             const productItem = document.getElementById(id)
             const favourites = document.querySelector('[data-favorites]');
             let favProductItem = productItem.cloneNode(true)
             favProductItem.querySelector('[data-itemBtn]').
                 innerHTML='Del from favorite'
-            favProductItem.setAttribute('data-favorite','')
             favourites.appendChild(favProductItem)
         }
 
-        const resetStorage = (elementId,e)=>{
+    const resetStorage = (elementId,e)=>{
             const productItem = e.target.parentElement
-            // console.log(productItem.childNodes);
             const getData =JSON.parse(localStorage.getItem('dataList'))
             if(!getData) localStorage.setItem('dataList', JSON.stringify([elementId]))
             else if (productItem.parentElement.hasAttribute('data-favorites')){
-                console.log(productItem.parentElement.children)
+                const index=+getData.findIndex(item=>item===elementId)
+                getData.splice(index,1)
+                localStorage.setItem('dataList',JSON.stringify(getData))
             }
             else {
                 getData.push(elementId)
@@ -57,15 +57,12 @@
     const moveProduct = (e)=>{
         e.stopPropagation()
         const productItem = e.target.parentElement
-
         const elemId = productItem.getAttribute('id')
-
         const element = e.target
         if(element.hasAttribute('data-itemBtn')){
             if(productItem.parentElement.hasAttribute('data-goodslist')){
                 createElem(elemId)
                 resetStorage(elemId,e)
-
             }
             if(productItem.parentElement.hasAttribute('data-favorites')) {
                 resetStorage(elemId,e)
@@ -79,7 +76,8 @@
     const checkStorage = ()=>{
         let themeValue = +localStorage.getItem('themeValue')
         setBodyTheme(themeValue)
-
+        let dataList =JSON.parse(localStorage.getItem('dataList'))
+        dataList.forEach(item=>createElem(item))
     }
 
     const select = document.querySelector('select');
