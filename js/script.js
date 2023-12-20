@@ -4,7 +4,7 @@
 
     const CONSTANTS = {
         form: document.querySelector('#todoForm'),
-        todoContainer: document.querySelector('#todoItems'),
+        todoContainer: document.querySelector('[data-todo-items]'),
         dataKey: 'formData',
     }
 
@@ -19,13 +19,18 @@
                 .querySelectorAll('input, textarea')
                 .forEach(el=>{data[el.name] = el.value});
             // console.log(data)
-            model.saveData(data);
-            view.renderElement(data);
+            const savedData = model.saveData(data);
+            if(savedData){
+                view.renderElement(data);
+                view.resetForm()
+            }
         },
 
         loadedHandler() {
+            model.setId();
             console.log(this)
             CONSTANTS.form.addEventListener('submit',this.formHandler.bind(this));
+            model.get().forEach(item=>view.renderElement(item));
             // CONSTANTS.todoContainer.addEventListener('click', removeTodoItemHandler)
         },
         init() {
@@ -33,25 +38,25 @@
         }
     }
 
-    controller.init()
-
     const view = {
         renderElement (data){
             const template = this.createElement(data);
             this.renderTodoItem(template)
         },
 
+        resetForm(){
+            CONSTANTS.form.reset()
+        },
+
         renderTodoItem (elementToRender){
-            //there is a problem in a row below
-            const todoContainer = document.querySelector('#todoForm');
-            todoContainer.prepend(elementToRender);
+            CONSTANTS.todoContainer.prepend(elementToRender);
             return elementToRender;
         },
 
         createElement(data){
             const wrapper = document.createElement('div');
             wrapper.className = 'col-4';
-            wrapper.setAttribute('data-todo-item','');
+            wrapper.setAttribute('data-todo-item',data.id);
 
             const taskWrapper = document.createElement('div');
             taskWrapper.className = 'taskWrapper';
@@ -78,15 +83,33 @@
     }
 
     const model = {
+        currentId: 0,
+
         saveData(data){
+            this.currentId++;
+            const dataCopy = {...data};
+            dataCopy.id = this.currentId;
             const savedData = this.get();
-            savedData.push(data)
-            localStorage.setItem(CONSTANTS.dataKey, JSON.stringify(savedData))
+            savedData.push(dataCopy)
+            try {
+                localStorage.setItem(CONSTANTS.dataKey, JSON.stringify(savedData))
+                return this.get().at(-1)
+            } catch (e) {
+                alert('Error save data')
+            }
         },
         get(){
             const dataFromStorage = JSON.parse(localStorage.getItem(CONSTANTS.dataKey)) ;
             return dataFromStorage ? dataFromStorage : [];
+        },
+
+        setId(){
+          const items = this.get();
+          if(!items.length) return;
+          this.currentId = +items.at(-1).id;
         }
     }
+
+    controller.init()
 
 })()
