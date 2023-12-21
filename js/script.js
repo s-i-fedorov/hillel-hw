@@ -2,12 +2,12 @@
 
 (function (){
 
-    const CONSTANTS = {
+    const CONSTANTS = Object.freeze({
         form: document.querySelector('#todoForm'),
         todoContainer: document.querySelector('[data-todo-items]'),
         dataKey: 'formData',
         removeBtn: 'data-remove-btn'
-    }
+    })
 
     const controller = {
 
@@ -19,10 +19,10 @@
             target
                 .querySelectorAll('input, textarea')
                 .forEach(el=>{data[el.name] = el.value});
-            // console.log(data)
+            if(!data.title.trim() || !data.description.trim()) return alert('Fill the form');
             const savedData = model.saveData(data);
             if(savedData){
-                view.renderElement(data);
+                view.renderElement(savedData);
                 view.resetForm()
             }
         },
@@ -34,8 +34,6 @@
             const getElementId = target.closest('[data-todo-item]')
                 .getAttribute('data-todo-item');
             const removedEl = model.removeElementById(getElementId);
-            // this is a problem with id
-            console.log(getElementId)
             if(removedEl){
                 view.removeElement(getElementId);
             }
@@ -43,13 +41,15 @@
 
         loadedHandler() {
             model.setId();
-            console.log(this)
-            CONSTANTS.form.addEventListener('submit',this.formHandler.bind(this));
+            CONSTANTS.form.addEventListener('submit',this.formHandler);
             model.get().forEach(item=>view.renderElement(item));
-            CONSTANTS.todoContainer.addEventListener('click', this.removeTodoItem.bind(this))
+            CONSTANTS.todoContainer.addEventListener('click', this.removeTodoItem)
         },
         init() {
-            document.addEventListener('DOMContentLoaded', this.loadedHandler.bind(this))
+            this.formHandler = this.formHandler.bind(this)
+            this.loadedHandler = this.loadedHandler.bind(this)
+            this.removeTodoItem = this.removeTodoItem.bind(this)
+            document.addEventListener('DOMContentLoaded', this.loadedHandler)
         }
     }
 
@@ -97,7 +97,6 @@
         },
 
         removeElement(id){
-            console.log(+id)
             document.querySelector(`[data-todo-item="${id}"]`).remove();
         }
     }
