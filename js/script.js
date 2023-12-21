@@ -46,9 +46,9 @@
             CONSTANTS.todoContainer.addEventListener('click', this.removeTodoItem)
         },
         init() {
-            this.formHandler = this.formHandler.bind(this)
-            this.loadedHandler = this.loadedHandler.bind(this)
-            this.removeTodoItem = this.removeTodoItem.bind(this)
+            this.formHandler = this.formHandler.bind(this);
+            this.loadedHandler = this.loadedHandler.bind(this);
+            this.removeTodoItem = this.removeTodoItem.bind(this);
             document.addEventListener('DOMContentLoaded', this.loadedHandler)
         }
     }
