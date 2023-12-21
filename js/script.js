@@ -19,7 +19,7 @@
             target
                 .querySelectorAll('input, textarea')
                 .forEach(el=>{data[el.name] = el.value});
-            if(!data.title.trim() || !data.description.trim()) return alert('Fill the form');
+            // if(!data.title.trim() || !data.description.trim()) return alert('Fill the form');
             const savedData = model.saveData(data);
             if(savedData){
                 view.renderElement(savedData);
@@ -33,6 +33,7 @@
             if(!target.hasAttribute(CONSTANTS.removeBtn)) return;
             const getElementId = target.closest('[data-todo-item]')
                 .getAttribute('data-todo-item');
+            console.log(getElementId)
             const removedEl = model.removeElementById(getElementId);
             if(removedEl){
                 view.removeElement(getElementId);
