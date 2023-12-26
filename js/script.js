@@ -54,12 +54,17 @@
         writable: false
     });
 
-    Object.defineProperty(user,'name',{
-        writable: true
-    });
+    try {
+        Object.defineProperty(user,'name',{
+            writable: true
+        });
+    } catch (err){console.log(err)}
+
 
     console.log(Object.getOwnPropertyDescriptor(user, 'name'));
-    // user.name = 'Anton';
-    // console.log(user.name)
+
+    try {
+        user.name = 'Anton';
+    } catch (e) {console.log(e)}
 
 })()
