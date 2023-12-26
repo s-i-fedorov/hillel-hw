@@ -4,26 +4,16 @@
     const user = {
         name: 'Serhii',
         surname: 'Fedorov',
-        get fullName(){
-            return this.name+' '+this.surname
-        },
-        set fullName(string){
-            [this.name,this.surname] = string.split(' ');
-        }
     }
 
     Object.defineProperty(user,'name',{
         writable: false
     });
 
-    // console.log(Object.getOwnPropertyDescriptor(user, 'name'));
-
     Object.defineProperty(user, 'age', {
         value: 36,
         writable: true
     })
-
-    // console.log(Object.getOwnPropertyDescriptor(user, 'age'));
 
     console.log(Object.keys(user));
 
@@ -31,8 +21,18 @@
         console.log(userKey + ': ' + user[userKey])
     }
 
-
     console.log('--------Task 1.1 -------')
+
+    Object.defineProperty(user,'fullName',{
+        get: function (){
+            return this.name+' '+this.surname
+        },
+        set: function (string){
+            [this.name,this.surname] = string.split(' ');
+        },
+        enumerable: true,
+        configurable: true
+    });
 
     console.log('Demo getter:  '+user.fullName);
 
@@ -42,7 +42,6 @@
 
     user.fullName='Till Lindemann';
     console.log('Demo setter:  '+user.fullName);
-
 
     console.log('--------addition task -------')
 
@@ -59,7 +58,6 @@
             writable: true
         });
     } catch (err){console.log(err)}
-
 
     console.log(Object.getOwnPropertyDescriptor(user, 'name'));
 
