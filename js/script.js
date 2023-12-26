@@ -40,9 +40,9 @@
         },
 
         loadedHandler() {
-            model.setId();
+            model.setId;
             CONSTANTS.form.addEventListener('submit',this.formHandler);
-            model.get().forEach(item=>view.renderElement(item));
+            model.getData.forEach(item=>view.renderElement(item));
             CONSTANTS.todoContainer.addEventListener('click', this.removeTodoItem)
         },
         init() {
@@ -108,29 +108,29 @@
             this.currentId++;
             const dataCopy = {...data};
             dataCopy.id = this.currentId;
-            const savedData = this.get();
+            const savedData = this.getData;
             savedData.push(dataCopy)
             try {
                 localStorage.setItem(CONSTANTS.dataKey, JSON.stringify(savedData))
-                return this.get().at(-1)
+                return this.getData.at(-1)
             } catch (e) {
                 alert('Error save data')
             }
         },
 
-        get(){
+        get getData(){
             const dataFromStorage = JSON.parse(localStorage.getItem(CONSTANTS.dataKey)) ;
             return dataFromStorage ? dataFromStorage : [];
         },
 
-        setId(){
-          const items = this.get();
+        get setId(){
+          const items = this.getData;
           if(!items.length) return;
           this.currentId = +items.at(-1).id;
         },
 
         removeElementById(element){
-            const savedElements = this.get();
+            const savedElements = this.getData;
             const index = savedElements.findIndex(({id}) => {
                 return element === id;
             });
