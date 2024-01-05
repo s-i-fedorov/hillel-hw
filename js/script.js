@@ -30,7 +30,7 @@
 
     console.log('-------task_3-------')
 
-    const obj = {
+    const someObj = {
         name: 'Username',
         surname: 'UserSurname',
         age: 'userAge',
@@ -39,9 +39,20 @@
         car: 'userCar'
     }
 
-    let itr = Object.keys(obj)[Symbol.iterator]()
-    console.log(itr.next())
-    console.log(itr.next())
-    console.log(itr.next())
+    function foo(obj){
+        obj=someObj
+        let itr = Object.keys(obj)[Symbol.iterator]()
+        return itr.next
+    }
+
+    const funcForObj = foo()
+    funcForObj()
+    console.log(funcForObj())
+    console.log(funcForObj())
+
+    // let itr = Object.keys(obj)[Symbol.iterator]()
+    // console.log(itr.next())
+    // console.log(itr.next())
+    // console.log(itr.next())
 
 })()
