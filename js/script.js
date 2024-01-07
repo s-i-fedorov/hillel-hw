@@ -1,12 +1,15 @@
 'use strict';
 (function (){
 
-    const arr = [1,2,3,4,5]
-    arr.reverse()
+    const someArr = [1,2,3,4,5]
+    function iterArr (array){
+        array = someArr.reverse();
+        return array[Symbol.iterator]()
+    }
 
-    let iterator = arr[Symbol.iterator]()
-
-    console.log(iterator.next())
+    const baz = iterArr()
+    console.log(baz.next());
+    console.log(baz.next());
 
     console.log('-------task_2-------')
 
@@ -39,20 +42,13 @@
         car: 'userCar'
     }
 
-    function foo(obj){
+    function iterObj(obj){
         obj=someObj
-        let itr = Object.keys(obj)[Symbol.iterator]()
-        return itr.next
+        return  Object.keys(obj)[Symbol.iterator]()
     }
 
-    const funcForObj = foo()
-    funcForObj()
-    console.log(funcForObj())
-    console.log(funcForObj())
-
-    // let itr = Object.keys(obj)[Symbol.iterator]()
-    // console.log(itr.next())
-    // console.log(itr.next())
-    // console.log(itr.next())
+    const bar = iterObj()
+    console.log(bar.next())
+    console.log(bar.next())
 
 })()
