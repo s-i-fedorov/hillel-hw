@@ -11,6 +11,7 @@
     console.log(baz.next());
     console.log(baz.next());
 
+    // --------------task2
     console.log('-------task_2-------')
 
     function* fibNumbers(){
@@ -31,6 +32,7 @@
     console.log(fibonacci.next())
     console.log(fibonacci.next())
 
+    // --------------task3
     console.log('-------task_3-------')
 
     const someObj = {
