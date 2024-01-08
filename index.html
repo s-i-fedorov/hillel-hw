@@ -29,15 +29,28 @@
         color: white;
     }
     .work-field{
+        display: flex;
+        align-items: end;
+        justify-content: end;
         border-radius: 5px;
+        color: white;
+        font-size: 40px;
+        text-transform: uppercase;
         width: 340px;
         height: 125px;
+        /*padding-right: 5px;*/
         background-color: #000;
         box-shadow: 0 0 4px 1px darkslategray;
     }
     .result{
+        display: flex;
+        align-items: end;
+        justify-content: end;
+        font-size: 40px;
+        text-transform: uppercase;
         width: 340px;
         height: 50px;
+        color: white;
         background-color: #000;
         border-radius: 5px;
         box-shadow: 0 0 4px 1px darkslategray;
@@ -83,10 +96,10 @@
 <body>
 <div class="background">
     <div class="title">My calculator</div>
-    <div class="work-field"></div>
-    <div class="result"></div>
+    <div class="work-field">0</div>
+    <div class="result">0</div>
     <div class="buttons">
-        <div class="button red big">C</div>
+        <div data-c class="button red big">C</div>
         <div class="button big">(</div>
         <div class="button big">)</div>
         <div class="button">HIST</div>
@@ -94,22 +107,22 @@
         <div class="button">7</div>
         <div class="button">8</div>
         <div class="button">9</div>
-        <div class="button blue big">/</div>
+        <div data-btn class="button blue big">/</div>
         <div class="button">?</div>
         <div class="button">4</div>
         <div class="button">5</div>
         <div class="button">6</div>
-        <div class="button blue big">*</div>
+        <div data-btn class="button blue big">*</div>
         <div class="button">?</div>
         <div class="button">1</div>
         <div class="button">2</div>
         <div class="button">3</div>
-        <div class="button blue big">-</div>
+        <div data-btn class="button blue big">-</div>
         <div class="button">mode</div>
         <div class="button">0</div>
         <div class="button">.</div>
         <div class="button">%</div>
-        <div class="button blue">+</div>
+        <div data-btn class="button blue">+</div>
         <div class="button big">=</div>
     </div>
 </div>
