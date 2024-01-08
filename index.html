@@ -4,7 +4,116 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>
+    body{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 20px 0;
+    }
+    .background{
+        display: flex;
+        border-radius: 10px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        gap: 5px;
+        width: 350px;
+        height: 550px;
+        background-color: #808080;
+        margin: 0 auto;
+        padding: 5px 0;
+        box-shadow: 0 0 4px 1px lightskyblue;
+    }
+    .title{
+        text-align: left;
+        color: white;
+    }
+    .work-field{
+        border-radius: 5px;
+        width: 340px;
+        height: 125px;
+        background-color: #000;
+        box-shadow: 0 0 4px 1px darkslategray;
+    }
+    .result{
+        width: 340px;
+        height: 50px;
+        background-color: #000;
+        border-radius: 5px;
+        box-shadow: 0 0 4px 1px darkslategray;
+    }
+    .buttons{
+        display: grid;
+        grid-template-columns: repeat(5, 0.5fr);
+        column-gap: 5px;
+        row-gap: 5px;
+        /*justify-content: space-around;*/
+        width: 340px;
+        height: 340px;
+    }
+    .button{
+        /*padding: 2px;*/
+        box-shadow: 0 0 4px 1px darkslategray;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /*width: 60px;*/
+        /*height: 60px;*/
+        background-color: #000;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .button:hover{
+        cursor: pointer;
+    }
+    .red{
+        color: darkred;
+    }
+    .blue{
+        color: dodgerblue;
+    }
+    .big{
+        font-size: 30px;
+    }
+
+</style>
 <body>
+<div class="background">
+    <div class="title">My calculator</div>
+    <div class="work-field"></div>
+    <div class="result"></div>
+    <div class="buttons">
+        <div class="button red big">C</div>
+        <div class="button big">(</div>
+        <div class="button big">)</div>
+        <div class="button">HIST</div>
+        <div class="button">⌫</div>
+        <div class="button">7</div>
+        <div class="button">8</div>
+        <div class="button">9</div>
+        <div class="button blue big">/</div>
+        <div class="button">?</div>
+        <div class="button">4</div>
+        <div class="button">5</div>
+        <div class="button">6</div>
+        <div class="button blue big">*</div>
+        <div class="button">?</div>
+        <div class="button">1</div>
+        <div class="button">2</div>
+        <div class="button">3</div>
+        <div class="button blue big">-</div>
+        <div class="button">mode</div>
+        <div class="button">0</div>
+        <div class="button">.</div>
+        <div class="button">%</div>
+        <div class="button blue">+</div>
+        <div class="button big">=</div>
+    </div>
+</div>
+
 <script src="./js/script.js"></script>
 </body>
 </html>
