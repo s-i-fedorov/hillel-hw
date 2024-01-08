@@ -1,13 +1,16 @@
 'use strict';
 (function (){
-    function Person(name,age){
+    function Student(name,surname, yearBirth, marks, visiting){
         this.name = name;
-        this.age = age;
+        this.surname = surname;
+        this.yearBirth = yearBirth;
+        this.marks = [];
+        this.visiting = Array(25)
     }
-    let user = new Person('Vovan',26);
-    let user2 = new Person('Serhii',36);
-    let userYoung = new Person('Valera',17);
-    Person.prototype.userInfo = function (){
+    let user = new Student('Vovan',26);
+    let user2 = new Student('Serhii',36);
+    let userYoung = new Student('Valera',17);
+    Student.prototype.userInfo = function (){
         let fullInfo = {
             name: this.name,
             age: this.age,
