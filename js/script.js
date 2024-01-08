@@ -4,48 +4,54 @@
         this.name = name;
         this.surname = surname;
         this.yearBirth = yearBirth;
-        this.marks = [];
-        this.visiting = Array(25)
+        this.marks = marks;
+        this.visiting = Array(25).fill(null)
     }
-    let user = new Student('Vovan',26);
-    let user2 = new Student('Serhii',36);
-    let userYoung = new Student('Valera',17);
-    Student.prototype.userInfo = function (){
-        let fullInfo = {
-            name: this.name,
-            age: this.age,
+    let studentVovan = new Student('Vovan','Shaitan',1997,[100,90,80,80,90,100]);
+    let studentSerhii= new Student('Serhii','Fedorov', 1987,[80,100,100,100,100,90,100,80]);
+
+    Student.prototype.age = function () {
+        let today = new Date().getFullYear();
+        return today - this.yearBirth
         }
-        return fullInfo
-    }
-    console.log(user.userInfo());
-    console.log(user2.userInfo());
-//     -----------------task 2, car
-    function Car(brand,model,age,color){
-        this.brand = brand;
-        this.model = model;
-        this.age = age;
-        this.color = color;
-    }
-    let auto = new Car('Ford','Transit',2003,'white');
-    let auto2 = new Car('Mitsubishi','Lancer',2008,'black');
-    Car.prototype.setUser = function (user){
-        if(user.age<18) {
-            console.log('Permission denied');
-            this.user = null;
+    Student.prototype.summary = function() {
+        let avrMark = this.marks.reduce((acc, i) => acc + i, 0) / this.marks.length;
+        let avrVisiting = this.visiting.reduce((acc, i) => acc + i, 0) / this.visiting.length;
+        console.log([avrMark,avrVisiting])
+        if(avrMark>90 && avrVisiting>0.9) {
+            return 'Молодець!'
+        } else if(avrMark<90 && avrVisiting<0.9) {
+            return 'Редиска!'
         }
-        else {
-            this.user = user
+        else return 'Добре, але можна краще!'
         }
+    Student.prototype.absent = function (){
+        let i = this.visiting.findIndex(item=>item===null);
+        if (i===-1) return;
+        this.visiting[i]=0;
     }
-    Car.prototype.showInfo = function (){
-        console.log(
-            {'Owner':this.user ,
-            'Car':this}
-        )
+    Student.prototype.present = function (){
+        let i = this.visiting.findIndex(item=>item===null);
+        if (i===-1) return;
+        this.visiting[i]=1;
     }
-    auto.setUser(user)
-    auto2.setUser(userYoung)
-    auto.showInfo()
-    auto2.showInfo()
+
+//---------
+    for (let i = 0; i<3;i++){
+        studentSerhii.absent()
+    }
+    for (let i = 0; i<25;i++){
+        studentSerhii.present()
+    }
+
+    console.log(studentSerhii.visiting);
+    console.log(studentSerhii.summary());
+
+    // console.log(studentSerhii)
+    // console.log(studentVovan.age());
+
+    // let arr = [100,100,80,70,80,90,100,80]
+    // let avr = arr.findIndex(item=>item===80);
+    // console.log(avr)
 
 })()
