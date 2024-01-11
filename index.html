@@ -4,98 +4,13 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<style>
-    body{
-        box-sizing: border-box;
-        margin: 0;
-        padding: 20px 0;
-    }
-    .background{
-        display: flex;
-        border-radius: 10px;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-        gap: 5px;
-        width: 350px;
-        height: 550px;
-        background-color: #808080;
-        margin: 0 auto;
-        padding: 5px 0;
-        box-shadow: 0 0 4px 1px lightskyblue;
-    }
-    .title{
-        text-align: left;
-        color: white;
-    }
-    .work-field{
-        display: flex;
-        align-items: end;
-        justify-content: end;
-        border-radius: 5px;
-        color: white;
-        font-size: 40px;
-        text-transform: uppercase;
-        width: 340px;
-        height: 125px;
-        /*padding-right: 5px;*/
-        background-color: #000;
-        box-shadow: 0 0 4px 1px darkslategray;
-    }
-    .result{
-        display: flex;
-        align-items: end;
-        justify-content: end;
-        font-size: 40px;
-        text-transform: uppercase;
-        width: 340px;
-        height: 50px;
-        color: white;
-        background-color: #000;
-        border-radius: 5px;
-        box-shadow: 0 0 4px 1px darkslategray;
-    }
-    .buttons{
-        display: grid;
-        grid-template-columns: repeat(5, 0.5fr);
-        column-gap: 5px;
-        row-gap: 5px;
-        /*justify-content: space-around;*/
-        width: 340px;
-        height: 340px;
-    }
-    .button{
-        /*padding: 2px;*/
-        box-shadow: 0 0 4px 1px darkslategray;
-        border-radius: 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /*width: 60px;*/
-        /*height: 60px;*/
-        background-color: #000;
-        color: white;
-        text-align: center;
-        font-weight: bold;
-        font-size: 20px;
-    }
-    .button:hover{
-        cursor: pointer;
-    }
-    .red{
-        color: darkred;
-    }
-    .blue{
-        color: dodgerblue;
-    }
-    .big{
-        font-size: 30px;
-    }
-
-</style>
+<link rel="stylesheet" href="./style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 <body>
 <div class="background">
-    <div class="title">My calculator</div>
+    <div class="title">-= My calculator =-</div>
     <div class="work-field">0</div>
     <div class="result">0</div>
     <div class="buttons">
