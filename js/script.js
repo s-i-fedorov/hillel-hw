@@ -21,14 +21,14 @@
             let avrVisiting = this.visiting.reduce((acc, i) => acc + i, 0) / this.visiting.length;
             console.log(avrMark, avrVisiting)
             if (avrMark > 90 && avrVisiting > 0.9) {
-                console.log('Молодець!')
+                return  'Молодець!'
             } else if (avrMark < 90 && avrVisiting < 0.9) {
-                console.log('Редиска!')
-            } else console.log('Добре, але можна краще!')
+                return 'Редиска!'
+            } else return 'Добре, але можна краще!'
         }
         function setGrade(grade, currentLesson){
             if(typeof grade !== 'number') throw new Error('Grade is not a number')
-            if(grade < grade.min || grade > grade.max) throw new Error('Invalid value');
+            if(grade < grades.min || grade > grades.max) throw new Error('Invalid value');
             const currentLessonIndex = currentLesson - 1 ;
             if(!this.visiting[currentLessonIndex]) throw new Error('Student has not been on the lesson')
             this.grades[currentLessonIndex] = grade;
@@ -44,7 +44,7 @@
                 grades: new Array(lessonsCount),
                 visiting: new Array(lessonsCount),
                 age() {
-                    age.call(this)
+                    return age.call(this)
                 },
                 absent() {
                     checkVisiting.call(this,false, currentLesson,lessonsCount)
@@ -58,7 +58,7 @@
                     setGrade.call(this, grade, currentLesson)
                 },
                 summary(){
-                    summary.call(this)
+                    return summary.call(this)
                 }
             }
         }
@@ -80,8 +80,6 @@
         studentSerhii.setGrade(90)
     }
 
-    studentSerhii.summary()
-
-    console.log(studentSerhii)
+    console.log(studentSerhii.summary());
 
 })()
