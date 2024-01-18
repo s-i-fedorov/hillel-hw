@@ -4,53 +4,74 @@
     const CONST = {
         typing: [],
         counter: 0,
+        field: document.querySelector('.work-field'),
+        result: document.querySelector('.result')
+    }
+
+    const currentDate = {
+        newDate: new Date(),
+        get fullDate(){
+            return this.newDate.toLocaleString()
+        },
+    }
+
+    function pushToTyping (e){
+        CONST.typing.push(e.target.innerHTML)
+        // CONST.typing.join('').replace(/(\d)(?=(\d{3})+$)/g, "$1 ")
+
+    }
+    function showResult(){
+        const data = CONST.typing.join('');
+        const correctData = data.replace(/(\d)(?=(\d{3})+$)/g, "$1 ");
+        CONST.field.innerHTML = correctData
+        CONST.result.innerHTML = correctData
     }
 
     function buttonHandler(e){
-        console.log(e.target.classList);
-        const field = document.querySelector('.work-field')
-        const result = document.querySelector('.result')
 
 
 
-        if(e.target.classList.contains('button')){
-            if(e.target.hasAttribute('data-operand')){CONST.counter=0}
-            CONST.typing.push(e.target.innerHTML)
-            field.innerHTML = CONST.typing.join('')
-            result.innerHTML = CONST.typing.join('')
-            if(e.target.hasAttribute('data-digit')){
-                CONST.counter++
-                if(CONST.counter===3){
-                    CONST.typing.push(' ')
-                    CONST.counter=0
-                }
-            }
+        if(e.target.hasAttribute('data-digit')) {
+            pushToTyping(e)
+            showResult()
+
         }
+        if(e.target.hasAttribute('data-operand')){
+            CONST.typing.push(e.target.innerHTML);
+            CONST.field.innerHTML = CONST.typing.join('')
+        }
+
+
         if(e.target.hasAttribute('data-c')) {
             CONST.typing = []
-            CONST.counter = 0
-            field.innerHTML = '0'
-            result.innerHTML = '0'
+            CONST.field.innerHTML = '0'
+            CONST.result.innerHTML = '0'
         }
         if(e.target.hasAttribute('data-equal')){
-            let a = CONST.typing.join('');
-            console.log(a)
-            field.innerHTML = eval(a);
-            result.innerHTML = eval(a);
+            let resultToString = CONST.typing.join('');
+            let resultRepl = resultToString.replace(' ','');
+
+            try {const finalResult = eval(resultRepl);}
+            catch (e) {
+                CONST.field.innerHTML = 'Error'
+                CONST.result.innerHTML = 'Error'
+                // console.log(e)
+            }
+
+
+            CONST.typing = [finalResult];
+            console.log(resultRepl);
+            showResult();
+            // CONST.field.innerHTML = finalResult;
+            // CONST.result.innerHTML = finalResult;
         }
         }
     document.addEventListener("click", buttonHandler)
 
-    let a = 18;
-    let b = 3;
-    let c = '+';
-    let d = a+c+b;
-    let z = new Date()
-    let fullDate = z.getDate()+'.'+z.getMonth()+1+'.'+z.getFullYear()+' '+z.getHours()+':'+z.getMinutes()
-    console.log(fullDate)
-    // console.log(eval(d))
-    // console.log(parseInt('8+3',10))
-    // console.log(a.trim())
+    let a = [1,2,3,4,5];
+    a.splice(-3,0,'')
+    // console.log(a)
+    // console.log(currentDate.fullDate)
 
 
 })()
