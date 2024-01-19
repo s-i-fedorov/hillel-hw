@@ -1,6 +1,18 @@
 'use strict';
 (function () {
 
+    class Student {
+        constructor(name, surname, yearBirth, lessonsCount = 25) {
+            // super(props);
+            this.name = name;
+            this.surname = surname;
+            this.yearBirth = yearBirth;
+            this.grades = new Array(lessonsCount);
+            this.visiting = new Array(lessonsCount);
+        }
+
+    }
+
     function studentConstructor(){
         const grades = {
             min: 0,
