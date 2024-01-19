@@ -1,11 +1,23 @@
 'use strict';
 (function (){
 
-    const CONST = {
+    const data = {
         typing: [],
-        counter: 0,
         field: document.querySelector('.work-field'),
-        result: document.querySelector('.result')
+        result: document.querySelector('.result'),
+        storageKey: 'calcHist',
+        get typingJoin (){
+            return this.typing.join('')
+        },
+        get typingWithSpaces(){
+            if(!data.typing.length) return 0
+            return this.typingJoin.replace(/(\d)(?=(\d{3})+$)/g, "$1 ")
+        },
+        get totalResult(){
+            if(!data.typing.length) return 0
+            const result = eval(this.typingJoin.replace(' ',''));
+            return result.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1 ")
+        }
     }
 
     const currentDate = {
@@ -16,60 +28,62 @@
     }
 
     function pushToTyping (e){
-        CONST.typing.push(e.target.innerHTML)
-        // CONST.typing.join('').replace(/(\d)(?=(\d{3})+$)/g, "$1 ")
-
+        data.typing.push(e.target.innerHTML);
     }
-    function showResult(){
-        const data = CONST.typing.join('');
-        const correctData = data.replace(/(\d)(?=(\d{3})+$)/g, "$1 ");
-        CONST.field.innerHTML = correctData
-        CONST.result.innerHTML = correctData
+    
+    function fillTypingField(someData){
+        data.field.innerHTML = data.typingWithSpaces;
     }
-
+    
+    function fillResultField(e){
+        if(e.target.hasAttribute('data-operand')) return
+        data.result.innerHTML = data.totalResult
+    }
+    function getData(){
+        const getData = JSON.parse(localStorage.getItem(data.storageKey));
+        return getData ? getData : [];
+    }
+    function saveData(){
+        const fullData = getData();
+        const currentData = {
+            typing: data.typingWithSpaces,
+            result: data.totalResult,
+            date: currentDate.fullDate
+        }
+        fullData.push(currentData)
+        localStorage.setItem(data.storageKey, JSON.stringify(fullData))
+    }
     function buttonHandler(e){
 
-
-
-        if(e.target.hasAttribute('data-digit')) {
+        if(e.target.hasAttribute('data-digit')
+        || e.target.hasAttribute('data-operand')) {
             pushToTyping(e)
-            showResult()
-
         }
-        if(e.target.hasAttribute('data-operand')){
-            CONST.typing.push(e.target.innerHTML);
-            CONST.field.innerHTML = CONST.typing.join('')
-        }
-
 
         if(e.target.hasAttribute('data-c')) {
-            CONST.typing = []
-            CONST.field.innerHTML = '0'
-            CONST.result.innerHTML = '0'
+            data.typing = []
+        }
+        if(e.target.hasAttribute('data-backspace')) {
+            data.typing.pop()
         }
         if(e.target.hasAttribute('data-equal')){
-            let resultToString = CONST.typing.join('');
-            let resultRepl = resultToString.replace(' ','');
-
-            try {const finalResult = eval(resultRepl);}
-            catch (e) {
-                CONST.field.innerHTML = 'Error'
-                CONST.result.innerHTML = 'Error'
-                // console.log(e)
+            try {
+                saveData();
+                data.typing = [data.totalResult];
             }
-
-
-            CONST.typing = [finalResult];
-            console.log(resultRepl);
-            showResult();
-            // CONST.field.innerHTML = finalResult;
-            // CONST.result.innerHTML = finalResult;
+            catch (e) {
+                data.field.innerHTML = 'Error'
+                data.result.innerHTML = 'Error'
+                console.log(e)
+            }
         }
+        fillTypingField(e);
+        fillResultField(e);
         }
     document.addEventListener("click", buttonHandler)
 
-    let a = [1,2,3,4,5];
-    a.splice(-3,0,'')
+    let a = [];
+    // console.log(a.length)
     // console.log(a)
     // console.log(currentDate.fullDate)
 
