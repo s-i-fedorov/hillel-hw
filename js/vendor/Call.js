@@ -1,140 +1,146 @@
 class Call {
-    #debugFlag = true;
-    #connectionTimeout = 2000;
-    #connectionTimer = null;
+  #debugFlag = true;
 
-    #inProgressTimeout = 3000;
-    #inProgressTimer = null;
+  #connectionTimeout = 2000;
 
+  #connectionTimer = null;
 
-    static CALL_STATUSES = {
-        disconnect: 'disconnect',
-        rejected: 'rejected',
-        connecting: 'connecting',
-        inProgress: 'in progress',
-    }
-    static changeStatusHandlers = [];
-    #timerId = null;
-    #duration = 0;
-    #startDate = null;
-    #endDate = null;
-    #phone = null;
-    #status = null;
+  #inProgressTimeout = 3000;
 
-    constructor(phoneNumber) {
-        if(!Call.validatePhoneNumber(phoneNumber)) {
-            throw new Error('Number is not correct');
-        }
+  #inProgressTimer = null;
 
-        this.#phone = phoneNumber;
-        this.#changeCallStatus(Call.CALL_STATUSES.connecting);
-    }
+  static CALL_STATUSES = {
+    disconnect: 'disconnect',
+    rejected: 'rejected',
+    connecting: 'connecting',
+    inProgress: 'in progress',
+  };
 
-    #changeCallStatus(status) {
-        this.#status = status
-        // this.#debug(this.changeStatusHandlers)
+  static changeStatusHandlers = [];
 
-        if(this.#status === Call.CALL_STATUSES.connecting) {
-            this.#debug(Call.CALL_STATUSES.connecting)
-            this.#startCalcCallDuration();
-            this.#startDate = new Date();
-            this.#connectionTimer = setTimeout(
-                () => this.#changeCallStatus(Call.#getRandomCallStatus()),
-                this.#connectionTimeout
-            )
+  #timerId = null;
 
-        }
+  #duration = 0;
 
-        if(this.#status === Call.CALL_STATUSES.inProgress) {
-            this.#debug(Call.CALL_STATUSES.inProgress)
-            this.#inProgressTimer = setTimeout(
-                () => this.#changeCallStatus(Call.CALL_STATUSES.disconnect),
-                this.#inProgressTimeout
-            )
-        }
+  #startDate = null;
 
-        if(this.#status === Call.CALL_STATUSES.rejected) {
-            this.#debug(Call.CALL_STATUSES.rejected)
-            this.#endCall()
-        }
+  #endDate = null;
 
-        if(this.#status === Call.CALL_STATUSES.disconnect) {
-            this.#debug(Call.CALL_STATUSES.disconnect)
-            this.#endCall()
-        }
+  #phone = null;
 
-        this.#callEventHandlers(this.#status)
+  #status = null;
+
+  constructor(phoneNumber) {
+    if (!Call.validatePhoneNumber(phoneNumber)) {
+      throw new Error('Number is not correct');
     }
 
+    this.#phone = phoneNumber;
+    this.#changeCallStatus(Call.CALL_STATUSES.connecting);
+  }
 
-    #endCall() {
-        clearTimeout(this.#connectionTimer)
-        clearTimeout(this.#inProgressTimer)
-        this.#connectionTimer = null;
-        this.#inProgressTimer = null;
+  #changeCallStatus(status) {
+    this.#status = status;
+    // this.#debug(this.changeStatusHandlers)
 
-        this.#endCalcCallDuration()
-        this.#endDate = new Date()
+    if (this.#status === Call.CALL_STATUSES.connecting) {
+      this.#debug(Call.CALL_STATUSES.connecting);
+      this.#startCalcCallDuration();
+      this.#startDate = new Date();
+      this.#connectionTimer = setTimeout(
+        () => this.#changeCallStatus(Call.#getRandomCallStatus()),
+        this.#connectionTimeout,
+      );
     }
 
-    endCallOutside() {
-        this.#changeCallStatus(Call.CALL_STATUSES.disconnect);
-    }
-    static #getRandomCallStatus() {
-        const randomNum = Math.floor(Math.random() * 10);
-        return randomNum >= 5 ? Call.CALL_STATUSES.inProgress : Call.CALL_STATUSES.rejected;
-    }
-
-    #startCalcCallDuration() {
-        this.#timerId = setInterval(() => {
-            this.#duration += 1;
-        }, 1000)
+    if (this.#status === Call.CALL_STATUSES.inProgress) {
+      this.#debug(Call.CALL_STATUSES.inProgress);
+      this.#inProgressTimer = setTimeout(
+        () => this.#changeCallStatus(Call.CALL_STATUSES.disconnect),
+        this.#inProgressTimeout,
+      );
     }
 
-    #endCalcCallDuration() {
-        clearInterval(this.#timerId);
-        this.#timerId = null;
+    if (this.#status === Call.CALL_STATUSES.rejected) {
+      this.#debug(Call.CALL_STATUSES.rejected);
+      this.#endCall();
     }
 
-    #debug(data) {
-        if(!this.#debugFlag) return;
-
-        if(typeof data === 'object') {
-            console.log(data)
-        }
-
-        console.log(data)
-    }
-    static validatePhoneNumber(phoneNumber) {
-        let validated = false;
-
-        if(typeof(phoneNumber) === 'string' && phoneNumber.trim().length > 2) {
-            validated = true
-        }
-
-        return validated;
+    if (this.#status === Call.CALL_STATUSES.disconnect) {
+      this.#debug(Call.CALL_STATUSES.disconnect);
+      this.#endCall();
     }
 
-    #callEventHandlers(...data) {
-        Call.changeStatusHandlers.forEach(handler => {
-            handler(...data);
-        })
+    this.#callEventHandlers(this.#status);
+  }
+
+  #endCall() {
+    clearTimeout(this.#connectionTimer);
+    clearTimeout(this.#inProgressTimer);
+    this.#connectionTimer = null;
+    this.#inProgressTimer = null;
+
+    this.#endCalcCallDuration();
+    this.#endDate = new Date();
+  }
+
+  endCallOutside() {
+    this.#changeCallStatus(Call.CALL_STATUSES.disconnect);
+  }
+
+  static #getRandomCallStatus() {
+    const randomNum = Math.floor(Math.random() * 10);
+    return randomNum >= 5 ? Call.CALL_STATUSES.inProgress : Call.CALL_STATUSES.rejected;
+  }
+
+  #startCalcCallDuration() {
+    this.#timerId = setInterval(() => {
+      this.#duration += 1;
+    }, 1000);
+  }
+
+  #endCalcCallDuration() {
+    clearInterval(this.#timerId);
+    this.#timerId = null;
+  }
+
+  #debug(data) {
+    if (!this.#debugFlag) return;
+
+    if (typeof data === 'object') {
+      console.log(data);
     }
 
-    static addChangeStatusListener(handler) {
-        if(typeof handler !== 'function') return;
-        Call.changeStatusHandlers.push(handler);
-    };
+    console.log(data);
+  }
 
-    static removeChangeStatusListener(handler) {
-        if(typeof handler !== 'function') return;
-        if(this.changeStatusHandlers.length === 0) return;
+  static validatePhoneNumber(phoneNumber) {
+    let validated = false;
 
-        const handlerIndex = Call.changeStatusHandlers.findIndex(item => {
-            return handler === item;
-        })
+    if (typeof (phoneNumber) === 'string' && phoneNumber.trim().length > 2) {
+      validated = true;
+    }
 
-        Call.changeStatusHandlers.splice(handlerIndex,  1);
-    };
+    return validated;
+  }
 
+  #callEventHandlers(...data) {
+    Call.changeStatusHandlers.forEach((handler) => {
+      handler(...data);
+    });
+  }
+
+  static addChangeStatusListener(handler) {
+    if (typeof handler !== 'function') return;
+    Call.changeStatusHandlers.push(handler);
+  }
+
+  static removeChangeStatusListener(handler) {
+    if (typeof handler !== 'function') return;
+    if (this.changeStatusHandlers.length === 0) return;
+
+    const handlerIndex = Call.changeStatusHandlers.findIndex((item) => handler === item);
+
+    Call.changeStatusHandlers.splice(handlerIndex, 1);
+  }
 }

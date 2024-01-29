@@ -1,61 +1,63 @@
 class CallController {
-    #currentCall = null;
-    #callHistory = [];
+  #currentCall = null;
 
-    constructor() {
-        this.#trackCallStatus()
-    }
-    startCall(phoneNumber) {
-        console.log('startCall start')
-        if(this.#currentCall) {
-            console.warn('You currently no call!');
-            return this.#currentCall;
-        }
+  #callHistory = [];
 
-        this.#currentCall = new Call(phoneNumber)
-    }
+  constructor() {
+    this.#trackCallStatus();
+  }
 
-    #endCall() {
-        if(!this.#currentCall) {
-            console.warn('Currect call is not exist 404');
-            return null;
-        }
-
-        this.#callHistory.push(Object.freeze(this.#currentCall));
-        this.#currentCall = null;
+  startCall(phoneNumber) {
+    console.log('startCall start');
+    if (this.#currentCall) {
+      console.warn('You currently no call!');
+      return this.#currentCall;
     }
 
-    endCallByCaller() {
-        if(!this.#currentCall) {
-            console.warn('Currect call is not exist 404');
-            return null;
-        }
+    this.#currentCall = new Call(phoneNumber);
+  }
 
-        this.#currentCall.endCallOutside();
-        this.#callHistory.push(Object.freeze(this.#currentCall));
-        this.#currentCall = null;
+  #endCall() {
+    if (!this.#currentCall) {
+      console.warn('Currect call is not exist 404');
+      return null;
     }
 
-    #trackCallStatus() {
-        Call.addChangeStatusListener((callStatus) => {
-            if(callStatus === Call.CALL_STATUSES.disconnect || callStatus === Call.CALL_STATUSES.rejected) {
-                this.#endCall()
-            }
-        })
+    this.#callHistory.push(Object.freeze(this.#currentCall));
+    this.#currentCall = null;
+  }
+
+  endCallByCaller() {
+    if (!this.#currentCall) {
+      console.warn('Currect call is not exist 404');
+      return null;
     }
 
-    get currentCall() {
-        return this.#currentCall
-    }
-    get callHistory() {
-        return this.#callHistory
-    }
+    this.#currentCall.endCallOutside();
+    this.#callHistory.push(Object.freeze(this.#currentCall));
+    this.#currentCall = null;
+  }
+
+  #trackCallStatus() {
+    Call.addChangeStatusListener((callStatus) => {
+      if (callStatus === Call.CALL_STATUSES.disconnect || callStatus === Call.CALL_STATUSES.rejected) {
+        this.#endCall();
+      }
+    });
+  }
+
+  get currentCall() {
+    return this.#currentCall;
+  }
+
+  get callHistory() {
+    return this.#callHistory;
+  }
 }
 
-
-// const callController = new CallController()
+// const callController = new CallController();
 //
-// callController.startCall('1111')
+// callController.startCall('1111');
 // callController.endCallByCaller()
 // callController.startCall('1111')
 // callController.endCallByCaller()
