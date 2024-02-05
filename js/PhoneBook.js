@@ -44,6 +44,20 @@ class PhoneBook {
     this.renderContact(this.#contacts.at(-1));
   }
 
+  lookForUser() {
+    const textInput = document.querySelector('#contacts-search');
+    const searchedValue = textInput.innerHTML;
+    const searchedResult = 'xz';
+  }
+
+  addSearchedUsers(user) {
+    this.#searchedUsers.push(user);
+  }
+
+  renderSearchedUsers() {
+    this.#searchedUsers.forEach((i) => this.renderContact(i));
+  }
+
   // call(contactId) {
   //   // find contact in this.#contacts and make a call
   // }
@@ -62,6 +76,7 @@ class PhoneBook {
     document.querySelector('[data-end-call]').addEventListener('click', this.#endCallHandler);
     this.#usersListSelector.addEventListener('click', this.#removeHandler);
     this.#usersListSelector.addEventListener('click', this.#callHandler);
+    // document.querySelector('#button-addon2').addEventListener('click', this.#showHistory);
   }
 
   #removeHandler = ({ target }) => {
@@ -102,6 +117,12 @@ class PhoneBook {
 
   // your methods
   // All event handlers should be a separate private methods
+
+  #showHistory() {
+    console.log(this.#callControllerInstance.callHistory);
+    console.log('hello');
+  }
+
   renderContact(user) {
     const isUserInContacts = this.#contacts.some((i) => user.id === i.id);
     if (!isUserInContacts) return null;
@@ -143,3 +164,5 @@ const phoneBook = new PhoneBook(
   '#staticBackdrop',
 );
 console.log(phoneBook);
+
+// console.log(this.#callControllerInstance.callHistory);
