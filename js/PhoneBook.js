@@ -88,6 +88,7 @@ class PhoneBook {
     const index = this.#contacts.findIndex((i) => i.id === contactId);
     const currentContact = this.#contacts[index];
     document.querySelector('[data-abonent-name]').innerHTML = currentContact.name;
+    console.log(this.#callControllerInstance.callHistory);
 
     this.#callControllerInstance.startCall(this.#contacts[index].phone);
     this.#modal.show();
