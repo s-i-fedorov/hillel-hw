@@ -99,7 +99,7 @@ class PhoneBook {
     const index = this.#contacts.findIndex((i) => i.id === contactId);
     const currentContact = this.#contacts[index];
     document.querySelector('[data-abonent-name]').innerHTML = currentContact.name;
-    console.log(this.#callControllerInstance.callHistory);
+    // console.log(this.#callControllerInstance.callHistory);
 
     this.#callControllerInstance.startCall(this.#contacts[index].phone, this.#contacts[index].name);
     this.#modal.show();
@@ -122,9 +122,27 @@ class PhoneBook {
   }
 
   #showHistory = () => {
+    this.#callControllerInstance.callHistory
+      .forEach((i) => this.#renderHistItem(i));
     this.#modalHist.show();
-    console.log(this.#callControllerInstance.callHistory);
+    // const test = this.#callControllerInstance.callHistory.slice(0);
   };
+
+  #renderHistItem({ phone, abName, endDate }) {
+    const histList = document.querySelector('[data-hist-ul]');
+    const template = document.createElement('li');
+    template.className = 'list-group-item d-flex justify-content-between align-items-center';
+    template.innerHTML = `<div>
+                            <span class="contacts__contact">${abName}  ${phone}</span>
+                            <div>${endDate}</div>
+                          </div>
+                          <div>
+                              <button data-call type="button" class="btn btn-success">
+                                  <i class="bi bi-telephone"></i>
+                              </button>
+                          </div>`;
+    histList.appendChild(template);
+  }
 
   renderContact(user) {
     const isUserInContacts = this.#contacts.some((i) => user.id === i.id);

@@ -31,6 +31,7 @@ class Call {
   #abName = null;
 
   #status = null;
+  // callInfo = null;
 
   constructor(phoneNumber, abName) {
     if (!Call.validatePhoneNumber(phoneNumber)) {
@@ -145,5 +146,17 @@ class Call {
     const handlerIndex = Call.changeStatusHandlers.findIndex((item) => handler === item);
 
     Call.changeStatusHandlers.splice(handlerIndex, 1);
+  }
+
+  get abName() {
+    return this.#abName;
+  }
+
+  get phone() {
+    return this.#phone;
+  }
+
+  get endDate() {
+    return this.#endDate;
   }
 }
