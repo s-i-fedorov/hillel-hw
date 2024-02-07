@@ -1,11 +1,11 @@
 class Call {
   #debugFlag = true;
 
-  #connectionTimeout = 2000;
+  #connectionTimeout = 500;
 
   #connectionTimer = null;
 
-  #inProgressTimeout = 3000;
+  #inProgressTimeout = 1000;
 
   #inProgressTimer = null;
 
@@ -30,16 +30,19 @@ class Call {
 
   #abName = null;
 
+  #abId = null;
+
   #status = null;
   // callInfo = null;
 
-  constructor(phoneNumber, abName) {
+  constructor(phoneNumber, abName, id) {
     if (!Call.validatePhoneNumber(phoneNumber)) {
       throw new Error('Number is not correct');
     }
 
     this.#phone = phoneNumber;
     this.#abName = abName;
+    this.#abId = id;
     this.#changeCallStatus(Call.CALL_STATUSES.connecting);
   }
 
@@ -85,7 +88,7 @@ class Call {
     this.#inProgressTimer = null;
 
     this.#endCalcCallDuration();
-    this.#endDate = new Date();
+    this.#endDate = new Date().toLocaleString();
   }
 
   endCallOutside() {
@@ -154,6 +157,10 @@ class Call {
 
   get phone() {
     return this.#phone;
+  }
+
+  get abId() {
+    return this.#abId;
   }
 
   get endDate() {

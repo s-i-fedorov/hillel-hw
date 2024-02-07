@@ -101,7 +101,11 @@ class PhoneBook {
     document.querySelector('[data-abonent-name]').innerHTML = currentContact.name;
     // console.log(this.#callControllerInstance.callHistory);
 
-    this.#callControllerInstance.startCall(this.#contacts[index].phone, this.#contacts[index].name);
+    this.#callControllerInstance.startCall(
+      this.#contacts[index].phone,
+      this.#contacts[index].name,
+      this.#contacts[index].id,
+    );
     this.#modal.show();
   };
 
@@ -122,19 +126,32 @@ class PhoneBook {
   }
 
   #showHistory = () => {
+    const histList = document.querySelector('[data-hist-ul]');
     this.#callControllerInstance.callHistory
       .forEach((i) => this.#renderHistItem(i));
     this.#modalHist.show();
-    // const test = this.#callControllerInstance.callHistory.slice(0);
+    console.log(this.#modalHist);
+    histList.addEventListener('click', this.#histClickedHandler);
+    // console.log(this.#callControllerInstance.callHistory);
   };
 
-  #renderHistItem({ phone, abName, endDate }) {
+  #histClickedHandler = ({ target }) => {
+    console.log(target);
+    if (target.hasAttribute('data-close-btn')) {
+
+    }
+  };
+
+  #renderHistItem({
+    phone, abName, id, endDate,
+  }) {
     const histList = document.querySelector('[data-hist-ul]');
     const template = document.createElement('li');
     template.className = 'list-group-item d-flex justify-content-between align-items-center';
+    template.setAttribute('data-user-id', id);
     template.innerHTML = `<div>
-                            <span class="contacts__contact">${abName}  ${phone}</span>
-                            <div>${endDate}</div>
+                            <span class="contacts__contact">${abName} tel:${phone}</span>
+                            <div>date:${endDate}</div>
                           </div>
                           <div>
                               <button data-call type="button" class="btn btn-success">
