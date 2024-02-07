@@ -7,14 +7,14 @@ class CallController {
     this.#trackCallStatus();
   }
 
-  startCall(phoneNumber) {
+  startCall(phoneNumber, abName) {
     console.log('startCall start');
     if (this.#currentCall) {
       console.warn('You currently no call!');
       return this.#currentCall;
     }
 
-    this.#currentCall = new Call(phoneNumber);
+    this.#currentCall = new Call(phoneNumber, abName);
   }
 
   #endCall() {

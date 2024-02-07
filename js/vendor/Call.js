@@ -28,14 +28,17 @@ class Call {
 
   #phone = null;
 
+  #abName = null;
+
   #status = null;
 
-  constructor(phoneNumber) {
+  constructor(phoneNumber, abName) {
     if (!Call.validatePhoneNumber(phoneNumber)) {
       throw new Error('Number is not correct');
     }
 
     this.#phone = phoneNumber;
+    this.#abName = abName;
     this.#changeCallStatus(Call.CALL_STATUSES.connecting);
   }
 

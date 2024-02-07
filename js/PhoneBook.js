@@ -11,13 +11,24 @@ class PhoneBook {
 
   #modal = null;
 
+  #modalHist = null;
+
   #callControllerInstance = null;
 
-  constructor(users, userListSelector, removeSelector = null, callSelector = null, modalSelector = null) {
+  constructor(
+    users,
+    userListSelector,
+    removeSelector = null,
+    callSelector = null,
+    modalSelector = null,
+    modalSelectorHist = null,
+  ) {
     // Validate users
     // add users to contacts
     if (!PhoneBook.validateSelector(modalSelector)) throw new Error('modalSelector selector is not exist');
     this.#modal = new bootstrap.Modal(modalSelector);
+    if (!PhoneBook.validateSelector(modalSelector)) throw new Error('modalSelector selector is not exist');
+    this.#modalHist = new bootstrap.Modal(modalSelectorHist);
 
     if (!PhoneBook.validateSelector(userListSelector)) throw new Error('userListSelector selector is not exist');
     this.#usersListSelector = document.querySelector(userListSelector);
@@ -90,7 +101,7 @@ class PhoneBook {
     document.querySelector('[data-abonent-name]').innerHTML = currentContact.name;
     console.log(this.#callControllerInstance.callHistory);
 
-    this.#callControllerInstance.startCall(this.#contacts[index].phone);
+    this.#callControllerInstance.startCall(this.#contacts[index].phone, this.#contacts[index].name);
     this.#modal.show();
   };
 
@@ -110,10 +121,10 @@ class PhoneBook {
     // console.log(searchedResult);
   }
 
-  #showHistory() {
+  #showHistory = () => {
+    this.#modalHist.show();
     console.log(this.#callControllerInstance.callHistory);
-    console.log('hello');
-  }
+  };
 
   renderContact(user) {
     const isUserInContacts = this.#contacts.some((i) => user.id === i.id);
@@ -154,5 +165,6 @@ const phoneBook = new PhoneBook(
   'data-remove',
   'data-call',
   '#staticBackdrop',
+  '#staticBackdropHist',
 );
 console.log(phoneBook);
