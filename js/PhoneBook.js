@@ -73,7 +73,7 @@ class PhoneBook {
     document.querySelector('[data-end-call]').addEventListener('click', this.#endCallHandler);
     this.#usersListSelector.addEventListener('click', this.#removeHandler);
     this.#usersListSelector.addEventListener('click', this.#callHandler);
-    document.querySelector('#button-addon2').addEventListener('click', this.#showHistory);
+    document.querySelector('#button-addon2').addEventListener('click', this.#histHandler);
     document.querySelector('#contacts-search').addEventListener('keyup', this.#searchHandler);
   }
 
@@ -92,6 +92,7 @@ class PhoneBook {
   };
 
   #callHandler = ({ target }) => {
+    console.log('hello');
     const currentClickedBtn = target.closest(`[${this.#callAttr}]`);
     if (!currentClickedBtn) return;
     const contactTemplate = currentClickedBtn.closest('[data-user-id]');
@@ -125,22 +126,34 @@ class PhoneBook {
     // console.log(searchedResult);
   }
 
-  #showHistory = () => {
-    const histList = document.querySelector('[data-hist-ul]');
+  #histHandler = () => {
+    if (this.#callControllerInstance.callHistory.length === 0) return;
     this.#callControllerInstance.callHistory
       .forEach((i) => this.#renderHistItem(i));
     this.#modalHist.show();
-    console.log(this.#modalHist);
-    histList.addEventListener('click', this.#histClickedHandler);
+    const modalHist = document.querySelector('#staticBackdropLabel2');
+    // console.log(this.#modalHist);
+    modalHist.addEventListener('click', this.#histClickedHandler);
+
     // console.log(this.#callControllerInstance.callHistory);
   };
 
-  #histClickedHandler = ({ target }) => {
-    console.log(target);
-    if (target.hasAttribute('data-close-btn')) {
+  #histClickedHandler = (e) => {
+    const { target } = e;
+    const callBtn = target.closest('[data-call]');
+    const closeBtn = target.closest('[data-close-btn]');
 
+    if (closeBtn) {
+      console.log('hello close');
+    }
+    if (callBtn) {
+      this.#callHandler(e);
     }
   };
+
+  #createHistTemplate() {
+
+  }
 
   #renderHistItem({
     phone, abName, id, endDate,
