@@ -92,7 +92,6 @@ class PhoneBook {
   };
 
   #callHandler = ({ target }) => {
-    console.log('hello');
     const currentClickedBtn = target.closest(`[${this.#callAttr}]`);
     if (!currentClickedBtn) return;
     const contactTemplate = currentClickedBtn.closest('[data-user-id]');
@@ -100,7 +99,6 @@ class PhoneBook {
     const index = this.#contacts.findIndex((i) => i.id === contactId);
     const currentContact = this.#contacts[index];
     document.querySelector('[data-abonent-name]').innerHTML = currentContact.name;
-    // console.log(this.#callControllerInstance.callHistory);
 
     this.#callControllerInstance.startCall(
       this.#contacts[index].phone,
@@ -119,19 +117,30 @@ class PhoneBook {
 
   // your methods
   // All event handlers should be a separate private methods
-  #searchHandler() {
+  #searchHandler = () => {
     const textInput = document.querySelector('#contacts-search');
-    const searchedValue = textInput.value;
-    // const searchedResult = this.#contacts.forEach((i) => i.includes(searchedValue));
-    // console.log(searchedResult);
-  }
+    const searchedValue = textInput.value.toLowerCase();
+    const searchedResult = this.#contacts.filter((i) => i.name.toLowerCase().includes(searchedValue));
+
+    searchedResult.forEach((i) => this.renderContact(i));
+    console.log(searchedResult);
+  };
 
   #histHandler = () => {
     if (this.#callControllerInstance.callHistory.length === 0) return;
+    // console.log(this.#callControllerInstance.callHistory);
+    const histContacts = document.querySelector('[data-hist-contacts]');
+    const histUlExist = document.querySelector('[data-hist-ul]');
+    if (histUlExist) histUlExist.remove();
+    const histUl = document.createElement('ul');
+    histUl.setAttribute('data-hist-ul', '');
+    histUl.className = 'list-group';
+    histContacts.appendChild(histUl);
+
     this.#callControllerInstance.callHistory
       .forEach((i) => this.#renderHistItem(i));
     this.#modalHist.show();
-    const modalHist = document.querySelector('#staticBackdropLabel2');
+    const modalHist = document.querySelector('#staticBackdropHist');
     // console.log(this.#modalHist);
     modalHist.addEventListener('click', this.#histClickedHandler);
 
@@ -141,12 +150,8 @@ class PhoneBook {
   #histClickedHandler = (e) => {
     const { target } = e;
     const callBtn = target.closest('[data-call]');
-    const closeBtn = target.closest('[data-close-btn]');
-
-    if (closeBtn) {
-      console.log('hello close');
-    }
     if (callBtn) {
+      this.#modalHist.hide();
       this.#callHandler(e);
     }
   };
@@ -156,12 +161,12 @@ class PhoneBook {
   }
 
   #renderHistItem({
-    phone, abName, id, endDate,
+    phone, abName, abId, endDate,
   }) {
     const histList = document.querySelector('[data-hist-ul]');
     const template = document.createElement('li');
     template.className = 'list-group-item d-flex justify-content-between align-items-center';
-    template.setAttribute('data-user-id', id);
+    template.setAttribute('data-user-id', abId);
     template.innerHTML = `<div>
                             <span class="contacts__contact">${abName} tel:${phone}</span>
                             <div>date:${endDate}</div>
