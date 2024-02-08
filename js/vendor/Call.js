@@ -33,7 +33,6 @@ class Call {
   #abId = null;
 
   #status = null;
-  // callInfo = null;
 
   constructor(phoneNumber, abName, id) {
     if (!Call.validatePhoneNumber(phoneNumber)) {
@@ -132,6 +131,7 @@ class Call {
   }
 
   #callEventHandlers(...data) {
+    console.log('here', data);
     Call.changeStatusHandlers.forEach((handler) => {
       handler(...data);
     });

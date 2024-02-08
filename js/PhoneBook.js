@@ -128,7 +128,6 @@ class PhoneBook {
 
   #histHandler = () => {
     if (this.#callControllerInstance.callHistory.length === 0) return;
-    // console.log(this.#callControllerInstance.callHistory);
     const histContacts = document.querySelector('[data-hist-contacts]');
     const histUlExist = document.querySelector('[data-hist-ul]');
     if (histUlExist) histUlExist.remove();
@@ -141,10 +140,7 @@ class PhoneBook {
       .forEach((i) => this.#renderHistItem(i));
     this.#modalHist.show();
     const modalHist = document.querySelector('#staticBackdropHist');
-    // console.log(this.#modalHist);
     modalHist.addEventListener('click', this.#histClickedHandler);
-
-    // console.log(this.#callControllerInstance.callHistory);
   };
 
   #histClickedHandler = (e) => {
@@ -155,10 +151,6 @@ class PhoneBook {
       this.#callHandler(e);
     }
   };
-
-  #createHistTemplate() {
-
-  }
 
   #renderHistItem({
     phone, abName, abId, endDate,

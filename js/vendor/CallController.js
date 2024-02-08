@@ -8,7 +8,6 @@ class CallController {
   }
 
   startCall(phoneNumber, abName, id) {
-    console.log('startCall start');
     if (this.#currentCall) {
       console.warn('You currently no call!');
       return this.#currentCall;
