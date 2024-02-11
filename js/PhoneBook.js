@@ -5,6 +5,8 @@ class PhoneBook {
 
   #usersListSelector = null;
 
+  #usersList = null;
+
   #removeAttr = null;
 
   #callAttr = null;
@@ -23,8 +25,6 @@ class PhoneBook {
     modalSelector = null,
     modalSelectorHist = null,
   ) {
-    // Validate users
-    // add users to contacts
     if (!PhoneBook.validateSelector(modalSelector)) throw new Error('modalSelector selector is not exist');
     this.#modal = new bootstrap.Modal(modalSelector);
     if (!PhoneBook.validateSelector(modalSelector)) throw new Error('modalSelector selector is not exist');
@@ -46,21 +46,11 @@ class PhoneBook {
   }
 
   addContact(user) {
-    // validates user and adding that to this.#contacts
-    // if (!user.id || !user.phone) return;
     if (!PhoneBook.validateContact(user)) return null;
     this.#contacts.push(
       new User(user),
     );
     this.renderContact(this.#contacts.at(-1));
-  }
-
-  // call(contactId) {
-  //   // find contact in this.#contacts and make a call
-  // }
-
-  removeContact(contactId) {
-    // will remove contact from this.#contacts
   }
 
   search() {
@@ -70,12 +60,47 @@ class PhoneBook {
   #setEvents() {
     // Will add event listeners to contact book
     Call.addChangeStatusListener(this.#changeCallStatusHandler);
+    Call.addDurationListener(this.#changeDurationHandler);
+
     document.querySelector('[data-end-call]').addEventListener('click', this.#endCallHandler);
     this.#usersListSelector.addEventListener('click', this.#removeHandler);
     this.#usersListSelector.addEventListener('click', this.#callHandler);
     document.querySelector('#button-addon2').addEventListener('click', this.#histHandler);
-    document.querySelector('#contacts-search').addEventListener('keyup', this.#searchHandler);
+    document.querySelector('#contacts-search').addEventListener('keyup', this.#renderHandler);
   }
+
+  #renderHandler = (e) => {
+    if (this.#searchHandler()) {
+      this.#rebootUl();
+      this.#searchedUsers
+        .forEach((i) => this.renderContact(i));
+    } else {
+      this.#rebootUl();
+      this.#contacts.forEach((i) => this.renderContact(i));
+    }
+  };
+
+  #rebootUl() {
+    const contactsList = document.querySelector('[data-contacts-list]');
+    contactsList.firstElementChild.remove();
+    const ul = document.createElement('ul');
+    ul.className = 'list-group';
+    contactsList.appendChild(ul);
+    this.#usersListSelector = ul;
+  }
+
+  #searchHandler = () => {
+    const textInput = document.querySelector('#contacts-search');
+    const searchedValue = textInput.value.toLowerCase();
+    if (!searchedValue) {
+      return false;
+    }
+    const searchedResult = this.#contacts.filter(
+      (i) => i.name.toLowerCase().includes(searchedValue),
+    );
+    this.#searchedUsers = searchedResult;
+    return searchedResult;
+  };
 
   #removeHandler = ({ target }) => {
     const currentClickedBtn = target.closest(`[${this.#removeAttr}]`);
@@ -115,16 +140,11 @@ class PhoneBook {
     }
   };
 
+  #changeDurationHandler = (duration) => {
+    document.querySelector('[data-call-duration]').innerHTML = `00:0${duration}`;
+  };
   // your methods
   // All event handlers should be a separate private methods
-  #searchHandler = () => {
-    const textInput = document.querySelector('#contacts-search');
-    const searchedValue = textInput.value.toLowerCase();
-    const searchedResult = this.#contacts.filter((i) => i.name.toLowerCase().includes(searchedValue));
-
-    searchedResult.forEach((i) => this.renderContact(i));
-    console.log(searchedResult);
-  };
 
   #histHandler = () => {
     if (this.#callControllerInstance.callHistory.length === 0) return;

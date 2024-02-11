@@ -18,6 +18,8 @@ class Call {
 
   static changeStatusHandlers = [];
 
+  static changeDurationHandlers = [];
+
   #timerId = null;
 
   #duration = 0;
@@ -87,6 +89,7 @@ class Call {
     this.#inProgressTimer = null;
 
     this.#endCalcCallDuration();
+    document.querySelector('[data-call-duration]').innerHTML = '00:00';
     this.#endDate = new Date().toLocaleString();
   }
 
@@ -102,7 +105,14 @@ class Call {
   #startCalcCallDuration() {
     this.#timerId = setInterval(() => {
       this.#duration += 1;
+      this.#durationEventHandler(this.#duration);
     }, 1000);
+  }
+
+  #durationEventHandler(data) {
+    Call.changeDurationHandlers.forEach((handler) => {
+      handler(data);
+    });
   }
 
   #endCalcCallDuration() {
@@ -131,7 +141,7 @@ class Call {
   }
 
   #callEventHandlers(...data) {
-    console.log('here', data);
+    // console.log('here', data);
     Call.changeStatusHandlers.forEach((handler) => {
       handler(...data);
     });
@@ -140,6 +150,11 @@ class Call {
   static addChangeStatusListener(handler) {
     if (typeof handler !== 'function') return;
     Call.changeStatusHandlers.push(handler);
+  }
+
+  static addDurationListener(handler) {
+    if (typeof handler !== 'function') return;
+    Call.changeDurationHandlers.push(handler);
   }
 
   static removeChangeStatusListener(handler) {
