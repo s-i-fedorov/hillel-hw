@@ -53,10 +53,6 @@ class PhoneBook {
     this.renderContact(this.#contacts.at(-1));
   }
 
-  search() {
-    // will search contact by: name, phone, email
-  }
-
   #setEvents() {
     // Will add event listeners to contact book
     Call.addChangeStatusListener(this.#changeCallStatusHandler);
@@ -231,4 +227,4 @@ const phoneBook = new PhoneBook(
   '#staticBackdrop',
   '#staticBackdropHist',
 );
-console.log(phoneBook);
+// console.log(phoneBook);
