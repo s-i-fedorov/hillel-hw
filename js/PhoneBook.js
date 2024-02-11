@@ -3,9 +3,9 @@ class PhoneBook {
 
   #searchedUsers = [];
 
-  #usersListSelector = null;
+  #contactsList = null;
 
-  #usersList = null;
+  #contactsListUl = null;
 
   #removeAttr = null;
 
@@ -19,7 +19,6 @@ class PhoneBook {
 
   constructor(
     users,
-    userListSelector,
     removeSelector = null,
     callSelector = null,
     modalSelector = null,
@@ -30,8 +29,9 @@ class PhoneBook {
     if (!PhoneBook.validateSelector(modalSelector)) throw new Error('modalSelector selector is not exist');
     this.#modalHist = new bootstrap.Modal(modalSelectorHist);
 
-    if (!PhoneBook.validateSelector(userListSelector)) throw new Error('userListSelector selector is not exist');
-    this.#usersListSelector = document.querySelector(userListSelector);
+    this.#contactsList = document.querySelector('[data-contacts-list]');
+    this.#contactsListUl = document.querySelector('.contacts__list ul');
+
     if (!removeSelector) throw new Error('removeSelector is not defined');
     this.#removeAttr = removeSelector;
     if (!callSelector) throw new Error('callSelector is not defined');
@@ -63,13 +63,13 @@ class PhoneBook {
     Call.addDurationListener(this.#changeDurationHandler);
 
     document.querySelector('[data-end-call]').addEventListener('click', this.#endCallHandler);
-    this.#usersListSelector.addEventListener('click', this.#removeHandler);
-    this.#usersListSelector.addEventListener('click', this.#callHandler);
-    document.querySelector('#button-addon2').addEventListener('click', this.#histHandler);
+    this.#contactsList.addEventListener('click', this.#removeHandler);
+    this.#contactsList.addEventListener('click', this.#callHandler);
+    document.querySelector('#button-show-hist').addEventListener('click', this.#histHandler);
     document.querySelector('#contacts-search').addEventListener('keyup', this.#renderHandler);
   }
 
-  #renderHandler = (e) => {
+  #renderHandler = () => {
     if (this.#searchHandler()) {
       this.#rebootUl();
       this.#searchedUsers
@@ -81,12 +81,12 @@ class PhoneBook {
   };
 
   #rebootUl() {
-    const contactsList = document.querySelector('[data-contacts-list]');
-    contactsList.firstElementChild.remove();
+    // const contactsList = document.querySelector('[data-contacts-list]');
+    this.#contactsList.firstElementChild.remove();
     const ul = document.createElement('ul');
     ul.className = 'list-group';
-    contactsList.appendChild(ul);
-    this.#usersListSelector = ul;
+    this.#contactsList.appendChild(ul);
+    this.#contactsListUl = ul;
   }
 
   #searchHandler = () => {
@@ -195,7 +195,7 @@ class PhoneBook {
     const isUserInContacts = this.#contacts.some((i) => user.id === i.id);
     if (!isUserInContacts) return null;
     const template = this.#createTemplate(user);
-    this.#usersListSelector.appendChild(template);
+    this.#contactsListUl.appendChild(template);
   }
 
   #createTemplate({ id, name }) {
@@ -226,7 +226,6 @@ class PhoneBook {
 
 const phoneBook = new PhoneBook(
   users,
-  '.contacts__list ul',
   'data-remove',
   'data-call',
   '#staticBackdrop',
