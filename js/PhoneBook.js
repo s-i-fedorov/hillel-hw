@@ -77,7 +77,6 @@ class PhoneBook {
   };
 
   #rebootUl() {
-    // const contactsList = document.querySelector('[data-contacts-list]');
     this.#contactsList.firstElementChild.remove();
     const ul = document.createElement('ul');
     ul.className = 'list-group';
