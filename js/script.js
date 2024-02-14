@@ -38,7 +38,7 @@
     }
 
     displayTasks() {
-      this.#tasks.forEach((value, key, map) => {
+      this.#tasks.forEach((value, key) => {
         console.log(`Task #${key} = ${value}`);
       });
     }
