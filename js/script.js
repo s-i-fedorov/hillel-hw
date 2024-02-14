@@ -2,8 +2,6 @@
   class TaskManager {
     #tasks = null;
 
-    // #currentId = null;
-
     constructor() {
       this.#tasks = new Map();
     }
