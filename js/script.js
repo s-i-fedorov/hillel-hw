@@ -14,7 +14,7 @@
 
   const newSet = new WeakSet();
   function trackObjects(object) {
-    if (!(typeof (object) === 'object')) throw new Error('Argument is not an object');
+    if (!(typeof (object) === 'object') || (object === null)) throw new Error('Argument is not an object');
     if (!newSet.has(object)) {
       newSet.add(object);
       return false;
@@ -23,7 +23,7 @@
   }
   trackObjects(data1);
   trackObjects(data2);
-  // trackObjects('data2');
+  // trackObjects(null);
   console.log(trackObjects(data1));
   console.log(newSet.has(data3));
 }());
