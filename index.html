@@ -29,7 +29,7 @@
                         data-input-field
                         type="text"
                         class="form-control"
-                        placeholder="Enter post's number"
+                        placeholder="Enter the post number from 1 to 100"
                         aria-label="Recipient's username"
                         aria-describedby="button-addon2"
                     />
@@ -44,16 +44,6 @@
             </div>
         </main>
 
-        <!-- Button trigger modal -->
-        <button
-            type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop"
-        >
-            Launch static backdrop modal
-        </button>
-
         <!-- Modal -->
         <div
             class="modal fade"
@@ -67,7 +57,11 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                        <h1
+                            data-modal-title
+                            class="modal-title fs-5"
+                            id="staticBackdropLabel"
+                        >
                             Modal title
                         </h1>
                         <button
@@ -77,9 +71,13 @@
                             aria-label="Close"
                         ></button>
                     </div>
-                    <div class="modal-body">...</div>
+                    <div data-modal-body class="modal-body">...</div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">
+                        <button
+                            data-comment-btn
+                            type="button"
+                            class="btn btn-primary"
+                        >
                             Comment
                         </button>
                         <button

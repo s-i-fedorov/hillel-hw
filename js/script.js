@@ -1,25 +1,51 @@
-;(function () {
+class Posts {
+    #
+}
+
+    const myModal = new bootstrap.Modal(
+        document.getElementById('staticBackdrop')
+    )
     async function getPosts(id) {
         try {
             let data = await fetch(
-                // `https://jsonplaceholder.typicode.com/todos`
                 `https://jsonplaceholder.typicode.com/posts?id=${id}`
             )
             return await data.json()
         } catch (e) {
             console.log(e)
         }
-
-        // console.log(data)
     }
 
+    async function getComments(id) {
+        try {
+            let data = await fetch(
+                `https://jsonplaceholder.typicode.com/comments?id=${id}`
+            )
+            return await data.json()
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    viewPostHandler(postId)
     function renderPost(data) {
         const dataFromServer = data
         if (dataFromServer.length > 1) throw new Error('Something went wrong')
         const dataObj = dataFromServer[0]
-        // console.log(dataFromServer)
-        // console.log(dataObj)
+        console.log(dataObj)
+        const modalTitle = document.querySelector('[data-modal-title]')
+        const modalBody = document.querySelector('[data-modal-body]')
+        const commentBtn = document.querySelector([data-comment-btn])
+        modalTitle.textContent = `Title: ${dataObj.title}`
+        modalBody.textContent = dataObj.body
+        myModal.show()
+        commentBtn.addEventListener('click', (e , dataObj.id) => {
+            viewPostHandler(e,dataObj.id)
+        })
+
+        // console.dir(modalTitle)
     }
+
     async function requestHandler(inputValue) {
         try {
             const data = await getPosts(inputValue)
@@ -56,4 +82,3 @@
     //     console.log(response)
     // })
     inputHandler()
-})()
