@@ -29,7 +29,7 @@ async function getComments(id) {
     }
 }
 
-function viewPostHandler(e) {
+function viewPostHandler() {
     myModal.hide()
     const comments = getComments(searchedPostId)
     comments.then(console.log)
@@ -40,8 +40,7 @@ function renderPost(data) {
     const dataFromServer = data
     if (dataFromServer.length > 1) throw new Error('Something went wrong')
     const dataObj = dataFromServer[0]
-    console.log(dataObj)
-    selectors.modalTitle.textContent = `Title: ${dataObj.title}`
+    selectors.modalTitle.textContent = `Title #${dataObj.id}: ${dataObj.title}`
     selectors.modalBody.textContent = dataObj.body
     myModal.show()
     searchedPostId = dataObj.id
@@ -71,7 +70,7 @@ function buttonHandler({ target }) {
 
 function inputHandler() {
     const input = document.querySelector('[data-input]')
-    document.addEventListener('click', buttonHandler)
+    input.addEventListener('click', buttonHandler)
 }
 
 inputHandler()
