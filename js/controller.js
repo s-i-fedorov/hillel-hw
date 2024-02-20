@@ -1,19 +1,22 @@
 class Controller {
-    view = new View()
     model = new Model()
     static searchedPostId = null
 
-    inputHandler() {
-        this.view.selectors.input.addEventListener('click', this.buttonHandler)
-        this.view.selectors.commentBtn.addEventListener(
+    constructor() {
+        this.#inputHandler()
+    }
+
+    #inputHandler() {
+        View.selectors.input.addEventListener('click', this.buttonHandler)
+        View.selectors.commentBtn.addEventListener(
             'click',
             this.viewPostHandler
         )
     }
 
     buttonHandler = ({ target }) => {
-        if (target !== this.view.selectors.searchBtn) return
-        const inputValue = +this.view.selectors.inputField.value
+        if (target !== View.selectors.searchBtn) return
+        const inputValue = +View.selectors.inputField.value
         if (
             !(typeof inputValue === 'number') ||
             !(inputValue > 0) ||
@@ -24,12 +27,10 @@ class Controller {
     }
 
     viewPostHandler = () => {
-        this.view.myModal.hide()
-        console.log(Controller.searchedPostId)
+        View.myModal.hide()
         const comments = this.model.getComments(Controller.searchedPostId)
         comments.then(console.log)
     }
 }
 
 const c = new Controller()
-c.inputHandler()

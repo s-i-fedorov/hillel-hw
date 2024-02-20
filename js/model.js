@@ -1,9 +1,8 @@
 class Model {
-    view = new View()
     async requestHandler(inputValue) {
         try {
             const data = await this.getPosts(inputValue)
-            this.view.renderPost(data)
+            View.renderPost(data)
         } catch (e) {
             console.log(e)
         }
