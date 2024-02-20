@@ -1,12 +1,12 @@
 class View {
     myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
-    searchedPostId = null
     selectors = {
         modalTitle: document.querySelector('[data-modal-title]'),
         modalBody: document.querySelector('[data-modal-body]'),
         commentBtn: document.querySelector('[data-comment-btn]'),
         searchBtn: document.querySelector('#button-addon2'),
         inputField: document.querySelector('[data-input-field]'),
+        input: document.querySelector('[data-input]'),
     }
 
     renderPost(data) {
@@ -18,12 +18,7 @@ class View {
         const dataObj = dataFromServer[0]
         this.selectors.modalTitle.textContent = `Title #${dataObj.id}: ${dataObj.title}`
         this.selectors.modalBody.textContent = dataObj.body
-        myModal.show()
-        Model.searchedPostId = dataObj.id
-        this.selectors.commentBtn.addEventListener(
-            'click',
-            Controller.viewPostHandler
-        )
+        this.myModal.show()
+        Controller.searchedPostId = dataObj.id
     }
 }
-const v = new View()

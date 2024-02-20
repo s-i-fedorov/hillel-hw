@@ -1,8 +1,9 @@
 class Model {
+    view = new View()
     async requestHandler(inputValue) {
         try {
             const data = await this.getPosts(inputValue)
-            View.renderPost(data)
+            this.view.renderPost(data)
         } catch (e) {
             console.log(e)
         }
@@ -30,5 +31,3 @@ class Model {
         }
     }
 }
-
-const m = new Model()

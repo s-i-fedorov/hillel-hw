@@ -1,16 +1,17 @@
 class Controller {
-    view = null
+    view = new View()
+    model = new Model()
+    static searchedPostId = null
 
-    constructor() {
-        this.view = new View()
-    }
     inputHandler() {
-        const input = document.querySelector('[data-input]')
-        input.addEventListener('click', this.buttonHandler)
+        this.view.selectors.input.addEventListener('click', this.buttonHandler)
+        this.view.selectors.commentBtn.addEventListener(
+            'click',
+            this.viewPostHandler
+        )
     }
 
-    buttonHandler({ target }) {
-        console.log(this.view)
+    buttonHandler = ({ target }) => {
         if (target !== this.view.selectors.searchBtn) return
         const inputValue = +this.view.selectors.inputField.value
         if (
@@ -19,16 +20,16 @@ class Controller {
             !(inputValue <= 100)
         )
             throw new Error('You entered invalid "Id"')
-        Model.requestHandler(inputValue)
+        this.model.requestHandler(inputValue)
     }
 
-    viewPostHandler() {
-        myModal.hide()
-        const comments = Model.getComments(View.searchedPostId)
+    viewPostHandler = () => {
+        this.view.myModal.hide()
+        console.log(Controller.searchedPostId)
+        const comments = this.model.getComments(Controller.searchedPostId)
         comments.then(console.log)
     }
 }
 
 const c = new Controller()
-// console.log(c.view.selectors.searchBtn)
 c.inputHandler()
