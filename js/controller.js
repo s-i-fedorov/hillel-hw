@@ -1,5 +1,6 @@
 class Controller {
-    #model = new Model()
+    #model = new Model();
+    #albumId = null;
     constructor() {
         this.#loadedHandler()
     }
@@ -9,10 +10,14 @@ class Controller {
         View.selectors.albumList.addEventListener('click', this.#clickHandler)
     }
 
-    #clickHandler = ({target}) => {
-        window.location.href = "./album.html";
-        alert(target)
-        console.log(target)
+    #clickHandler = (e) => {
+        const {target}=e;
+        // e.preventDefault();
+        this.#albumId = target.getAttribute('data-album-id');
+        console.log(this.#albumId)
+        // window.location.href = "./album.html";
+        // alert(target)
+        // console.log(target)
     };
 
     // buttonHandler = ({ target }) => {
