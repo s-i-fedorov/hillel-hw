@@ -1,5 +1,5 @@
 class ControllerAlbum {
-    #model = new ModelAlbum();
+    #modelAlbum = new ModelAlbum();
     #albumId = null;
     constructor() {
         this.#loadedHandler()
@@ -7,14 +7,14 @@ class ControllerAlbum {
 
     #loadedHandler() {
         document.addEventListener('DOMContentLoaded', this.#dataHandler);
-        View.selectors.albumList.addEventListener('click', this.#clickHandler)
+        // View.selectors.albumList.addEventListener('click', this.#clickHandler)
     }
 
     #dataHandler = () => {
-        const data = this.#model.getAlbum()
-        console.log(data)
         const urlData = new URLSearchParams(window.location.search)
         this.#albumId = urlData.get('albumId')
+        const data = this.#modelAlbum.getAlbum(this.#albumId)
+        console.log(data)
         console.log(this.#albumId)
     };
 

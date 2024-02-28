@@ -1,8 +1,8 @@
 class ModelAlbum {
-    async getAlbum() {
+    async getAlbum(id) {
         try {
             const data = await fetch(
-                `https://jsonplaceholder.typicode.com/albums`
+                `https://jsonplaceholder.typicode.com/albums?id=${id}`
             )
             return await data.json()
         } catch (e) {
